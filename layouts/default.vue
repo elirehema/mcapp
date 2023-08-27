@@ -36,7 +36,9 @@
           class="pl-4"
         >
           <v-list-item-icon>
-            <v-icon color="white">{{ 'mdi-'+ child.icon }}</v-icon>
+            <v-icon color="white">
+              {{ 'mdi-'+ child.icon }}
+            </v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>
@@ -44,6 +46,42 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+      </v-list>
+      <v-list shaped class="mt-0 pt-0 ml-2" dark>
+        <v-list-group
+          v-for="item in menuitems"
+          :key="item.title"
+          v-model="item.active"
+          :prepend-icon="`mdi-${item.icon}`"
+          active-class="white--text"
+          append-icon="mdi-chevron-down"
+          no-action
+          color="white"
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-medium ">
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item
+            v-for="child in item.menus"
+            :key="child.to"
+            :to="child.to"
+            color="white"
+            class="pl-9"
+            active-class="white--text"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ "mdi-" + child.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-subtitle class="font-weight-normal text-body-2" v-html="child.title" />
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
       </v-list>
       <template #append>
         <div v-if="false" class="pa-2">
@@ -137,6 +175,218 @@ export default {
           title: 'Reports',
           icon: 'file-chart',
           to: '/transactions'
+        }
+      ],
+      menuitems: [
+        {
+          title: 'Queries',
+          icon: 'database-search',
+          menus: [
+            {
+              title: 'Subscribers',
+              icon: 'circle-medium',
+              to: '/queries/subscribers'
+            },
+            {
+              title: 'Group',
+              icon: 'circle-medium',
+              to: '/groups'
+            },
+            {
+              title: 'Transactions',
+              icon: 'circle-medium',
+              to: '/transactions'
+            },
+            {
+              title: 'Group Request',
+              icon: 'circle-medium',
+              to: '/qr/grequest'
+            },
+            {
+              title: 'Bulk Transactions',
+              icon: 'circle-medium',
+              to: '/qr/bulktransactions'
+            },
+            {
+              title: 'Loan Transactions',
+              icon: 'circle-medium',
+              to: '/member/loans'
+            },
+            {
+              title: 'Group Settings',
+              icon: 'circle-medium',
+              to: '/qr/grsettings'
+            },
+            {
+              title: 'Group Statment',
+              icon: 'circle-medium',
+              to: '/qr/bgrstatment'
+            },
+            {
+              title: 'Group Loan Statment',
+              icon: 'circle-medium',
+              to: '/qr/grloanstatment'
+            }
+          ]
+        },
+        {
+          title: 'Reports',
+          icon: 'file-chart',
+          menus: [
+            {
+              title: 'Group',
+              icon: 'circle-medium',
+              to: '/report/group'
+            },
+            {
+              title: 'Transactions',
+              icon: 'circle-medium',
+              to: '/report/transactions'
+            },
+            {
+              title: 'Summary',
+              icon: 'circle-medium',
+              to: '/report/summary'
+            },
+            {
+              title: 'Trainers Tracker',
+              icon: 'circle-medium',
+              to: '/report/ttracker'
+            },
+            {
+              title: 'Trainers Summary Report',
+              icon: 'circle-medium',
+              to: '/report/tsummary'
+            },
+            {
+              title: 'Staff Report',
+              icon: 'circle-medium',
+              to: '/report/staff'
+            },
+            {
+              title: 'Group with Trainer',
+              icon: 'circle-medium',
+              to: '/report/grtrainers'
+            },
+            {
+              title: 'Group Weekly report',
+              icon: 'circle-medium',
+              to: '/report/grweekly'
+            },
+            {
+              title: 'Mkoba Perfomance Summry Report',
+              icon: 'circle-medium',
+              to: '/report/mkoba'
+            }
+          ]
+        },
+        {
+          title: 'Security',
+          icon: 'shield-lock',
+          menus: [
+            {
+              title: 'Users Management',
+              icon: 'circle-medium',
+              to: '/management/users'
+            },
+            {
+              title: 'Groups Management',
+              icon: 'circle-medium',
+              to: '/management/groups'
+            },
+            {
+              title: 'Audit Trial',
+              icon: 'circle-medium',
+              to: '/audittrial'
+            },
+            {
+              title: 'Change Your Password',
+              icon: 'circle-medium',
+              to: '/password'
+            },
+            {
+              title: 'Admin Password Change',
+              icon: 'circle-medium',
+              to: '/adminpassword'
+            },
+            {
+              title: 'Security Policies',
+              icon: 'circle-medium',
+              to: '/policies'
+            },
+            {
+              title: 'Trainers Management',
+              icon: 'circle-medium',
+              to: '/management/trainers'
+            }
+          ]
+        },
+        {
+          title: 'Settings',
+          icon: 'cog',
+          menus: [
+            {
+              title: 'User Functions',
+              icon: 'circle-medium',
+              to: '/settings/users'
+            },
+            {
+              title: 'User Roles',
+              icon: 'circle-medium',
+              to: '/settings/roles'
+            },
+            {
+              title: 'Access Control',
+              icon: 'circle-medium',
+              to: '/settings/access'
+            }
+          ]
+        },
+        {
+          title: 'Analytics',
+          icon: 'google-analytics',
+          menus: [
+            {
+              title: 'Loan repayments',
+              icon: 'circle-medium',
+              to: '/anlytics/loan'
+            },
+            {
+              title: 'Social Loan repayments',
+              icon: 'circle-medium',
+              to: '/anlytics/socialloan'
+            },
+            {
+              title: 'Loan Transactions',
+              icon: 'circle-medium',
+              to: '/anlytics/loantransactions'
+            },
+            {
+              title: 'Failed Transactions',
+              icon: 'circle-medium',
+              to: '/anlytics/failedtransactions'
+            },
+            {
+              title: 'Group Shares',
+              icon: 'circle-medium',
+              to: '/anlytics/groupshares'
+            },
+            {
+              title: 'Failed Group Creations',
+              icon: 'circle-medium',
+              to: '/anlytics/failedgroup'
+            },
+            {
+              title: 'Notifications',
+              icon: 'circle-medium',
+              to: '/anlytics/notifications'
+            },
+            {
+              title: 'Portal Token',
+              icon: 'circle-medium',
+              to: '/anlytics/tokens'
+            },
+          ]
         }
       ],
       miniVariant: false,
