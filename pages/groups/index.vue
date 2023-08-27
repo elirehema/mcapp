@@ -8,7 +8,7 @@
       <v-data-table
         :headers="headers"
         :items="groups"
-        item-key="name"
+        item-key="id"
         class="elevation-1"
         :loading="loading"
         loading-text="Loading... Please wait"
