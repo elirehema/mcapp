@@ -287,7 +287,7 @@ export default {
             {
               title: 'Users Management',
               icon: 'circle-medium',
-              to: '/management/users'
+              to: '/users'
             },
             {
               title: 'Groups Management',

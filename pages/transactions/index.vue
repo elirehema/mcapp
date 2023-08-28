@@ -14,6 +14,7 @@
         loading-text="Loading... Please wait"
         :footer-props="footerprops"
         :server-items-length="pages"
+        :items-per-page="15"
         @click:row="rowclick"
         @pagination="paginate"
       >
@@ -204,7 +205,7 @@ export default {
 
     async paginate (it) {
       this.loading = true
-      await this.$api.$get('/transactions', { params: { page: it.page, size: it.itemsPerPage, gid: it.gid, sort: 'transate desc' } })
+      await this.$api.$get('/transactions', { params: { page: it.page, size: it.itemsPerPage, gid: it.gid, sort: 'transid desc' } })
         .then((response) => {
           this.loading = false;
           this.pages = response.totalRows
