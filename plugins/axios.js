@@ -14,10 +14,10 @@ export default function ({ $axios, redirect, store }, inject) {
   })
 
   api.onRequest((config) => {
-    const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJta29iYS1hcHAiLCJzdWIiOiIyNTU3NDI4ODg5MDkiLCJleHAiOjE2OTMyNzIyNTcsIm5iZiI6MTY5MzI1MzY1NywiaWF0IjoxNjkzMjUzNjU3fQ.MSweayy1sKLYaf_457jiJUUdTkdv8I1n84YATEbDbVo'
+    const _token = localStorage.getItem('accessToken')
     api.setHeader('Content-Type', 'application/json')
 
-    api.setHeader('Authorization', token)
+    api.setHeader('Authorization', 'Bearer ' + _token)
   })
 
   api.onError((error) => {
