@@ -4,8 +4,10 @@
     <v-app-bar
       fade-img-on-scroll
       scroll-threshold="500"
+      color="primary"
+      dark
     >
-      <v-toolbar-title class=" font-weight-medium">
+      <v-toolbar-title class=" font-weight-bold text-h4">
         GROUP: {{ group.name }}
       </v-toolbar-title>
 
@@ -39,9 +41,12 @@
       </v-tab-item>
     </v-tabs-items>
     <v-tabs-items v-model="tab">
-    <v-tab-item>
-    <tab-group-account/>
-    </v-tab-item>
+      <v-tab-item>
+        <tab-group-services />
+      </v-tab-item>
+      <v-tab-item>
+        <tab-group-account />
+      </v-tab-item>
       <v-tab-item>
         <tab-group-members :members="members" @update="_getGroupMembers($event)" />
       </v-tab-item>
@@ -57,11 +62,13 @@
 import TabGroupMembers from '@/components/tabs/tab_group_members.vue'
 import TabGroupAccount from '@/components/tabs/tab_group_account.vue'
 import TabGroupTransactions from '@/components/tabs/tab_group_transactions.vue'
+import TabGroupServices from '@/components/tabs/tab_group_services.vue'
 export default {
   components: {
     'tab-group-members': TabGroupMembers,
     'tab-group-transactions': TabGroupTransactions,
     'tab-group-account': TabGroupAccount,
+    'tab-group-services': TabGroupServices
   },
   data () {
     return {
@@ -72,7 +79,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Account', 'Members', 'Transactions']
+      items: ['Services', 'Account', 'Members', 'Transactions']
     }
   },
   head () {
