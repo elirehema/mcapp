@@ -4,24 +4,22 @@
       :clipped="false"
       permanent
       color="primary"
+      dark
       app
       height="100%"
       style="max-height: 97.6%;"
     >
-      <v-list>
-        <v-list-item v-if="miniVariant" class="px-2">
+      <v-list dark>
+        <v-list-item link>
           <v-list-item-avatar color="whitish">
             <v-img :src="miniUrl" class="vuetify-logo" />
           </v-list-item-avatar>
-        </v-list-item>
-
-        <v-list-item v-else link>
-          <v-img
-            lazy-src="https://myvodacom.vodacom.co.tz/assets/myvodacom/downloadFile/VD-1650X450_VICOBA%201.webp"
-            max-height="70"
-            max-width="200"
-            src="https://elirehema.github.io/mcapp/mkoba.png"
-          />
+          <v-list-item-content>
+            <v-list-item-title class="text-h6">
+              Mkoba
+            </v-list-item-title>
+            <v-list-item-subtitle>Mkoba Platform</v-list-item-subtitle>
+          </v-list-item-content>
         </v-list-item>
       </v-list>
 
@@ -32,7 +30,7 @@
           :key="child.title"
           :to="child.to"
           link
-          color="white"
+          color="success"
           class="pl-4"
         >
           <v-list-item-icon>
@@ -385,7 +383,7 @@ export default {
               title: 'Portal Token',
               icon: 'circle-medium',
               to: '/anlytics/tokens'
-            },
+            }
           ]
         }
       ],

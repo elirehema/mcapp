@@ -12,7 +12,7 @@
   }
   
   #__nuxt .app {
-    font-family: "Inter", sans-serif;
+    font-family: "FiraSans", sans-serif;
   }
   
   
@@ -21,9 +21,11 @@
     -webkit-font-smoothing: antialiased;
     background: #f3f2f9 !important;
     font-style: normal !important;
-    font-family: "Inter", sans-serif !important;
+    font-family: "Mulish", sans-serif !important;
     margin: 0;
     overflow-x: hidden;
+    font-size: 12px !important;
+    font-weight: 100;
   }
   
   /*******************

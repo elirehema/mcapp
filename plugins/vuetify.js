@@ -24,12 +24,12 @@ export default (ctx) => {
           primary: '#4c4c4c',
           accent: '#000000',
           secondary: '#f49123',
-          success: '#f2b72d',
+          success: '#f49123',
           info: '#2196F3',
           warning: '#FB8C00',
           error: '#FF0000',
           bg: '#006666',
-          button: '#a470fd'
+          button: '#02532b'
         }
 
       }
