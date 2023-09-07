@@ -43,12 +43,12 @@
                 <v-row no-gutters class="mt-5">
                   <v-col cols="12" class=" mt-3">
                     <v-text-field
-                      v-model="form.userId"
+                      v-model="form.username"
                       color="black"
                       class="text-h4 px-3 form-input"
                       outlined
-                      placeholder="e.g 255716000000"
-                      label="Phone Number"
+                      placeholder="e.g username"
+                      label="Username"
                       required
                     />
                   </v-col>
@@ -91,7 +91,7 @@ export default {
   data () {
     return {
       form: {
-        userId: null,
+        username: null,
         password: null
       },
 

@@ -21,11 +21,11 @@ const mutations = {
   },
   'AUTHENTICATE_SUCCESS' (state, payload) {
     state.showLoader = false
-    if (payload.responseCode === 0) {
-      state.msisdn = payload.msisdn
+    if (payload.accessToken) {
       state.account = payload
-      localStorage.setItem('msisdn', payload.msisdn)
-      if (payload.status === 'INACTIVE') {
+      window.localStorage.setItem('accessToken', payload.accessToken)
+      window.localStorage.setItem('userId', payload.id)
+      if (payload.changePassword) {
         this.$router.push('/password')
       } else {
         state.authenticated = true
@@ -62,9 +62,9 @@ const mutations = {
 }
 const actions = {
   async _authenticate ({ commit }, requestbody) {
-    commit('AUTHENTICATE',requestbody.password)
+    commit('AUTHENTICATE', requestbody.password)
     await this.$api
-      .$post('/auth', requestbody)
+      .$post('/signin', requestbody)
       .then((response) => {
         commit('AUTHENTICATE_SUCCESS', response)
       })
@@ -84,14 +84,23 @@ const actions = {
         commit('UPDATPASSWORD_ERROR')
       })
   },
-
+  async _changepassword ({ commit }, requestbody) {
+    await this.$api
+      .$put('/users/password', requestbody)
+      .then((response) => {
+        commit('LOGOUT_SESSION', response)
+      })
+      .catch(() => {
+        commit('UPDATPASSWORD_ERROR')
+      })
+  },
   async _logoutsession ({ commit }) {
     await commit('LOGOUT_SESSION')
   }
 }
 const getters = {
-  msisdn: function (state) {
-    return state.msisdn
+  userId: function (state) {
+    return state.account.id
   },
   password: function (state) { return state.password },
   isAuthenticated: function (state) {
