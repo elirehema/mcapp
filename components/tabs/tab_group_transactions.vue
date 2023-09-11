@@ -17,10 +17,11 @@
       >
         <template #top>
           <v-toolbar
-            color=""
+            color="primary"
             flat
+            dark
           >
-            <v-toolbar-title class=" font-weight-medium">
+            <v-toolbar-title class="d-flex font-weight-bold">
               Group Transactions
             </v-toolbar-title>
             <v-spacer />

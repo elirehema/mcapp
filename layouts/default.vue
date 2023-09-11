@@ -7,7 +7,7 @@
       dark
       app
       height="100%"
-      style="max-height: 97.6%;"
+      style="max-height: 96.8%;"
     >
       <v-list dark>
         <v-list-item link>
@@ -82,7 +82,7 @@
         </v-list-group>
       </v-list>
       <template #append>
-        <div class="pa-2">
+        <div class="py-2 mx-3">
           <v-btn block rounded color="warning" @click="$store.dispatch('_logoutsession')">
             <v-icon left>
               mdi-logout-variant

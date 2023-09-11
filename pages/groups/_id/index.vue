@@ -1,12 +1,20 @@
 
 <template>
   <v-card v-if="group" flat>
-    <v-app-bar
+    <v-toolbar
       fade-img-on-scroll
       scroll-threshold="500"
       color="primary"
       dark
+      extended
+      height="100px"
     >
+      <v-app-bar-nav-icon>
+        <v-icon large>
+          mdi-account-group
+        </v-icon>
+      </v-app-bar-nav-icon>
+
       <v-toolbar-title class=" font-weight-bold text-h4">
         GROUP: {{ group.name }}
       </v-toolbar-title>
@@ -17,6 +25,7 @@
         <v-tabs
           v-model="tab"
           align-with-title
+          show-arrows
         >
           <v-tabs-slider color="yellow" />
 
@@ -28,18 +37,7 @@
           </v-tab>
         </v-tabs>
       </template>
-    </v-app-bar>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item
-        v-for="item in items"
-        :key="item"
-      >
-        <v-card flat>
-          <v-card-text />
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
+    </v-toolbar>
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <tab-group-services />

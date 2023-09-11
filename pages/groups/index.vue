@@ -19,10 +19,11 @@
       >
         <template #top>
           <v-toolbar
-            color=""
+            color="primary"
             flat
+            dark
           >
-            <v-toolbar-title class=" font-weight-medium">
+            <v-toolbar-title class="text-h4 font-weight-black">
               Groups
             </v-toolbar-title>
             <v-spacer />
@@ -38,6 +39,8 @@
               class="search mr-2"
               clearable
               autocomplete="off"
+              light
+              background-color="white"
               @input="filterfromdatabase"
             />
           </v-toolbar>
@@ -46,7 +49,9 @@
           <span>{{ item.createdDate | dateformat }}</span>
         </template>
         <template #item.id="{item}">
-          <v-chip small color="bg lighten-2" class="white--text">{{ item.id }}</v-chip>
+          <v-chip small color="bg lighten-2" class="white--text">
+            {{ item.id }}
+          </v-chip>
         </template>
         <template #item.status="{ item }">
           <v-chip dark :color="item.status == 'ACTIVE' ? 'green':'success'">
@@ -74,13 +79,15 @@ export default {
       pages: 0,
       loading: false,
       headers: [
-        { text: 'Name', value: 'name' },
+        { text: 'Group Name', value: 'name' }
+        /**
         { text: 'Group ID', value: 'id' },
         { text: 'Group Type ', value: 'type.type' },
         { text: 'Location', value: 'location' },
         { text: 'Members', value: 'members' },
         { text: 'Status ', value: 'status' },
         { text: 'Created Date', value: 'created' }
+        **/
       ],
       show: false,
       editedItem: {}

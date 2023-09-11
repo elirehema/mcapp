@@ -9,11 +9,12 @@
   >
     <template #top>
       <v-toolbar
-        color=""
+        color="primary"
         flat
+        dark
       >
-        <v-toolbar-title class=" font-weight-medium">
-         {{ member.name }} {{member.familyName }} Groups
+        <v-toolbar-title class=" font-weight-bold">
+          {{ member.name }} {{ member.familyName }} Groups
         </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
@@ -24,7 +25,9 @@
     <template #item.status="{ item }">
       <v-chip dark class="font-weight-bold" :color="item.status == 'ACTIVE' ? 'green':'success'">
         <v-avatar v-if="item.status == 'ACTIVE'" left>
-          <v-icon small>mdi-checkbox-marked-circle</v-icon>
+          <v-icon small>
+            mdi-checkbox-marked-circle
+          </v-icon>
         </v-avatar>
         {{ item.status.toLowerCase() }}
       </v-chip>
@@ -63,7 +66,7 @@ export default {
       editedItem: {}
     }
   },
-  methods:{
+  methods: {
     rowclick (v) {
       this.$router.push(`/groups/${v.id}/${this.$route.params.id}`)
     }

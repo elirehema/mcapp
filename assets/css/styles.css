@@ -20,7 +20,7 @@ body #app {
   font-family: "Mulish", sans-serif !important;
   margin: 0;
   overflow-x: hidden;
-  font-size: 12px !important;
+  font-size: 15px !important;
   font-weight: 100;
 }
 
@@ -40,16 +40,12 @@ div {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
   font-family: "Mulish", sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 100;
 }
 
 p.primary--text.text-h6 {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
   font-family: "Mulish", sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 100;
 }
 
 main {
@@ -136,19 +132,6 @@ button span.v-btn__content {
   font-weight: bold;
   color: #a470fd !important;
   text-decoration-color: white;
-}
-
-th, td {
-  text-align: left;
-  padding: 0px;
-}
-
-table, tr, td {
-  border: none !important;
-}
-
-tr:nth-child(even) {
-  background-color: #E0F2F1;
 }
 
 .v-input.search {

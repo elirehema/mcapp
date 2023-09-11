@@ -3,9 +3,10 @@
     <v-app-bar
       fade-img-on-scroll
       elevation="0"
-      color="white"
+      color="primary"
+      dark
     >
-      <v-toolbar-title class="font-weight-medium">
+      <v-toolbar-title class="text-h5 font-weight-bold">
         Transaction: {{ transaction.id }}
       </v-toolbar-title>
     </v-app-bar>

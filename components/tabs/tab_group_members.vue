@@ -10,8 +10,11 @@
     <template #top>
       <v-toolbar
         flat
+        dense
+        color="primary"
+        dark
       >
-        <v-toolbar-title class="font-weight-medium">
+        <v-toolbar-title class="font-weight-bold">
           Group Members
         </v-toolbar-title>
         <v-spacer />

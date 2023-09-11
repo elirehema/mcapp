@@ -15,10 +15,11 @@
       >
         <template #top>
           <v-toolbar
-            color=""
+            color="primary"
             flat
+            dark
           >
-            <v-toolbar-title class=" font-weight-medium text-body-1">
+            <v-toolbar-title class="font-weight-bold">
               Group Services
             </v-toolbar-title>
             <v-spacer />

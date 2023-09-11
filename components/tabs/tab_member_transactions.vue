@@ -17,11 +17,12 @@
       >
         <template #top>
           <v-toolbar
-            color=""
+            color="primary"
             flat
+            dark
           >
-            <v-toolbar-title class=" font-weight-mediumm  text-uppercase">
-              All of <strong>{{member.name }} {{member.familyName}} </strong>Transactions
+            <v-toolbar-title class="font-weight-bold ">
+               <strong>{{member.name }} {{member.familyName}} </strong>Transactions
             </v-toolbar-title>
             <v-spacer />
           </v-toolbar>
