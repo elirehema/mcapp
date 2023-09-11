@@ -7,12 +7,12 @@
     class="elevation-1"
   >
     <template #top>
-      <v-toolbar flat>
-        <v-toolbar-title class=" font-weight-medium">
+      <v-toolbar color="primary" dark flat>
+        <v-toolbar-title class="text-h5 font-weight-bold">
           Member Query
         </v-toolbar-title>
         <v-spacer />
-        <div class="d-flex justify-end">
+        <div class="d-flex align-center justify-end">
           <v-text-field
             v-model="msisdn"
             append-icon="mdi-magnify"
@@ -22,31 +22,35 @@
             outlined
             filled
             height="40"
+            color="white"
             dense
             class="search mr-2"
+            light
+            background-color="white"
           />
           <v-btn
-            color="primary"
-            class="px-8 py-4"
+            color="button"
+            class=""
+            large
             @click="paginate"
           >
             <v-icon left>
               mdi-magnify
-            </v-icon>Query
+            </v-icon>Search Member
           </v-btn>
         </div>
       </v-toolbar>
     </template>
-    <template #item.index="{ index }">
+    <template #[`item.index`]="{ index }">
       {{ index + 1 }}
     </template>
-    <template #item.deposits="{ item }">
+    <template #[`item.deposits`]="{ item }">
       {{ item.deposits | currency }}
     </template>
-    <template #item.created="{item}">
+    <template #[`item.created`]="{item}">
       <span>{{ item.createdDate | dateformat }}</span>
     </template>
-    <template #item.lastname="{ item }">
+    <template #[`item.lastname`]="{ item }">
       {{ item.familyName == '-1'?'': item.familyName }}
     </template>
   </v-data-table>

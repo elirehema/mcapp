@@ -20,10 +20,11 @@
       >
         <template #top>
           <v-toolbar
-            color=""
+            color="primary"
             flat
+            dark
           >
-            <v-toolbar-title class=" font-weight-medium">
+            <v-toolbar-title class="text-h5 font-weight-bold">
               Group Transactions
             </v-toolbar-title>
             <v-spacer />
@@ -48,6 +49,8 @@
               min-width="auto"
               absolute
               autocomplete="off"
+              light
+              background-color="white"
             >
               <template #no-data>
                 <v-list-item>
@@ -70,10 +73,13 @@
               </template>
               <template #item="{ item }">
                 <v-list-item-avatar
-                  color="primary" dark
+                  color="primary"
+                  dark
                   class="text-sm font-weight-light white--text"
                 >
-                  <v-icon color="white">mdi-account-group</v-icon>
+                  <v-icon color="white">
+                    mdi-account-group
+                  </v-icon>
                 </v-list-item-avatar>
                 <v-list-item-content dense @click="updateReportQuery(item)">
                   <v-list-item-title
@@ -125,15 +131,15 @@
           </v-tooltip>
         </template>
         <template #item.member="{ item }">
-        <nuxt-link v-if="item.member != null" :to="`/members/${item.memberId}`">
+          <nuxt-link v-if="item.member != null" :to="`/members/${item.memberId}`">
             <span>{{ item.member.name }} {{ item.member.familyName == '-1' ? '':item.member.familyName }}</span>
-        </nuxt-link>
-        <span v-else>No found</span>
+          </nuxt-link>
+          <span v-else>No found</span>
         </template>
         <template #item.group="{ item }">
-        <nuxt-link :to="`/groups/${item.groupId}`">
+          <nuxt-link :to="`/groups/${item.groupId}`">
             <span>{{ item.groupId }} </span>
-        </nuxt-link>
+          </nuxt-link>
         </template>
         <template #no-data>
           <span>No transaction found ...</span>
@@ -199,15 +205,15 @@ export default {
       this.show = true
       this.$router.push(`/transactions/${v.id}`)
     },
-    updateReportQuery(val){
-        this.paginate({ page: 0, itemsPerPage: 15, gid: val.id })
+    updateReportQuery (val) {
+      this.paginate({ page: 0, itemsPerPage: 15, gid: val.id })
     },
 
     async paginate (it) {
       this.loading = true
       await this.$api.$get('/transactions', { params: { page: it.page, size: it.itemsPerPage, gid: it.gid, sort: 'transid desc' } })
         .then((response) => {
-          this.loading = false;
+          this.loading = false
           this.pages = response.totalRows
           this.page = response.currentPage
           this.transactions = response.results

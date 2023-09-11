@@ -13,7 +13,7 @@
       >
         <template #top>
           <v-toolbar color="" flat>
-            <v-toolbar-title class="font-weight-mediumm text-uppercase">
+            <v-toolbar-title class="font-weight-medium text-uppercase">
               {{ member.name }} {{ member.familyName }} Transactions in Group
               <strong>{{ group.name }}</strong>
             </v-toolbar-title>

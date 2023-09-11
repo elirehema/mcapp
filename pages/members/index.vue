@@ -13,8 +13,8 @@
     @pagination="paginate"
   >
     <template #top>
-      <v-toolbar flat>
-        <v-toolbar-title class=" font-weight-medium">
+      <v-toolbar dark color="primary" flat>
+        <v-toolbar-title class=" font-weight-black text-h4">
           Group Members
         </v-toolbar-title>
         <v-spacer />
@@ -30,6 +30,8 @@
           class="search mr-2"
           clearable
           autocomplete="off"
+          light
+          background-color="white"
           @input="filterfromdatabase"
         />
       </v-toolbar>
