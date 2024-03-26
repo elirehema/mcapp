@@ -208,7 +208,7 @@ export default {
             {
               title: 'Loan Transactions',
               icon: 'circle-medium',
-              to: '/member/loans'
+              to: '/queries/loans'
             },
             {
               title: 'Group Settings',
