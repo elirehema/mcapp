@@ -188,12 +188,12 @@ export default {
             {
               title: 'Group',
               icon: 'circle-medium',
-              to: '/groups'
+              to: '/queries/groups'
             },
             {
               title: 'Transactions',
               icon: 'circle-medium',
-              to: '/transactions'
+              to: '/queries/transactions'
             },
             {
               title: 'Group Request',
@@ -234,47 +234,47 @@ export default {
             {
               title: 'Group',
               icon: 'circle-medium',
-              to: '/report/group'
+              to: '/reports/groups'
             },
             {
               title: 'Transactions',
               icon: 'circle-medium',
-              to: '/report/transactions'
+              to: '/reports/transactions'
             },
             {
               title: 'Summary',
               icon: 'circle-medium',
-              to: '/report/summary'
+              to: '/reports/summary'
             },
             {
               title: 'Trainers Tracker',
               icon: 'circle-medium',
-              to: '/report/ttracker'
+              to: '/reports/ttracker'
             },
             {
               title: 'Trainers Summary Report',
               icon: 'circle-medium',
-              to: '/report/tsummary'
+              to: '/reports/tsummary'
             },
             {
               title: 'Staff Report',
               icon: 'circle-medium',
-              to: '/report/staff'
+              to: '/reports/staff'
             },
             {
               title: 'Group with Trainer',
               icon: 'circle-medium',
-              to: '/report/grtrainers'
+              to: '/reports/grtrainers'
             },
             {
               title: 'Group Weekly report',
               icon: 'circle-medium',
-              to: '/report/grweekly'
+              to: '/reports/grweekly'
             },
             {
               title: 'Mkoba Perfomance Summry Report',
               icon: 'circle-medium',
-              to: '/report/mkoba'
+              to: '/reports/mkoba'
             }
           ]
         },
