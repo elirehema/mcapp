@@ -6,7 +6,6 @@
           :items="transactions"
           item-key="id"
           class="elevation-1"
-          :search="search"
           :loading="loading"
           loading-text="Loading... Please wait"
           :footer-props="footerprops"
@@ -20,25 +19,6 @@
               </v-toolbar-title>
               <v-spacer />
               <v-row no-gutters>
-                <v-col cols="12" sm="12" md="3">
-                  <v-text-field
-                    prepend-inner-icon="mdi-magnify"
-                    label="Enter search text ..."
-                    single-line
-                    hide-details
-                    outlined
-                    filled
-                    height="40"
-                    dense
-                    class="search mr-2"
-                    clearable
-                    autocomplete="off"
-                    light
-                    background-color="white"
-                    v-model="search"
-                  />
-                </v-col>
-                
                 <v-col cols="12" sm="12" md="3" class="ml-2">
                   <v-text-field
                     prepend-inner-icon="mdi-phone"
