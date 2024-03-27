@@ -285,27 +285,27 @@ export default {
             {
               title: 'Users Management',
               icon: 'circle-medium',
-              to: '/users'
+              to: '/security/users'
             },
             {
               title: 'Groups Management',
               icon: 'circle-medium',
-              to: '/management/groups'
+              to: '/security/groups'
             },
             {
               title: 'Audit Trial',
               icon: 'circle-medium',
-              to: '/audittrial'
+              to: '/security/audittrial'
             },
             {
               title: 'Change Your Password',
               icon: 'circle-medium',
-              to: '/password'
+              to: '/security/password'
             },
             {
               title: 'Admin Password Change',
               icon: 'circle-medium',
-              to: '/adminpassword'
+              to: '/security/adminpassword'
             },
             {
               title: 'Security Policies',

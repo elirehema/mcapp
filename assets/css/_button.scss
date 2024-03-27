@@ -1,4 +1,4 @@
-button{
+button:not([class^="v-btn v-btn--outlined"]){
     & span{
     &.v-btn__content{
         font-weight: bold;

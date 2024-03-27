@@ -13,9 +13,9 @@
     @pagination="paginate"
   >
     <template #top>
-      <v-toolbar flat>
-        <v-toolbar-title class=" font-weight-medium">
-          System Users
+      <v-toolbar color="primary" dark flat>
+        <v-toolbar-title class="text-h5 font-weight-black">
+          PORTAL USERS MANAGEMENT
         </v-toolbar-title>
         <v-spacer />
         <v-text-field
@@ -24,9 +24,9 @@
           single-line
           hide-details
           outlined
-          filled
+          filled light
           height="40"
-          dense
+          dense solo
           class="search mr-2"
           clearable
           autocomplete="off"
@@ -37,7 +37,9 @@
     <template #[`item.created`]="{item}">
       <span>{{ item.createdAt | dateformat }}</span>
     </template>
-
+    <template #[`item.name`]="{item}">
+      <span>{{ item.firstName }} {{ item.lastName }}</span>
+    </template>
     <template #[`item.status`]="{ item }">
       <v-icon v-if="item.status == 1" color="blue">
         mdi-checkbox-marked-circle
@@ -57,12 +59,11 @@ export default {
       pages: 1,
       loading: false,
       headers: [
+      { text: 'Full Name ', value: 'name' },
         { text: 'Username ', value: 'username' },
         { text: 'Email Address ', value: 'email' },
         { text: 'Phone No. ', value: 'phone' },
         { text: 'Status ', value: 'status' },
-        { text: 'First Name ', value: 'firstName' },
-        { text: 'Last Name', value: 'lastName' },
         { text: 'Created At', value: 'created' }
       ]
     }
