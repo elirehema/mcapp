@@ -79,15 +79,15 @@ export default {
       pages: 0,
       loading: false,
       headers: [
-        { text: 'Group Name', value: 'name' }
-        /**
+        { text: 'Group Name', value: 'name' },
+        
         { text: 'Group ID', value: 'id' },
         { text: 'Group Type ', value: 'type.type' },
         { text: 'Location', value: 'location' },
         { text: 'Members', value: 'members' },
         { text: 'Status ', value: 'status' },
         { text: 'Created Date', value: 'created' }
-        **/
+        
       ],
       show: false,
       editedItem: {}
