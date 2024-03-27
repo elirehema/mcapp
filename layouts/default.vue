@@ -203,7 +203,7 @@ export default {
             {
               title: 'Bulk Transactions',
               icon: 'circle-medium',
-              to: '/qr/bulktransactions'
+              to: '/queries/bulktransactions'
             },
             {
               title: 'Loan Transactions',
@@ -326,7 +326,7 @@ export default {
             {
               title: 'User Functions',
               icon: 'circle-medium',
-              to: '/settings/users'
+              to: '/settings/functions'
             },
             {
               title: 'User Roles',
