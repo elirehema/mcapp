@@ -1,17 +1,12 @@
 <template>
-  <v-row justify="start">
-    <v-col cols="12" sm="12" >
-      <v-card min-height="400" flat outlined class="logo pa-0 d-flex justify-center align-center">
+
         <v-img
   lazy-src="https://picsum.photos/id/11/10/6"
   max-height="1000"
   max-width="100%"
   src="https://communitylivingproject.org.au/wp-content/uploads/2020/06/AdobeStock_315581293ropecircleWEB.jpg"
 ></v-img>
-      </v-card>
-    </v-col>
-   
-  </v-row>
+     
 </template>
 
 <script>
