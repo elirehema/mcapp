@@ -5,6 +5,7 @@
     :items="accounts"
     item-key="name"
     class="elevation-1"
+    :items-per-page="itemsPerPage"
   >
     <template #top>
       <v-toolbar color="primary" dark flat>

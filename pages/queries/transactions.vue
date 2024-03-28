@@ -9,6 +9,7 @@
         :search="search"
         :loading="loading"
         loading-text="Loading... Please wait"
+        :items-per-page="itemsPerPage"
         :footer-props="footerprops"
       >
         <template #top>

@@ -8,6 +8,7 @@
           class="elevation-1"
           :loading="loading"
           loading-text="Loading... Please wait"
+          :items-per-page="itemsPerPage"
           :footer-props="footerprops"
           :server-items-length="pages"
           @pagination="paginate"
