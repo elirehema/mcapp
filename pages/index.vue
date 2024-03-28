@@ -1,32 +1,16 @@
 <template>
   <v-row justify="start">
-    <v-col cols="12" sm="12" md="3">
-      <v-card min-height="400" flat outlined class="logo py-4 d-flex justify-center align-center">
-        <NuxtLogo />
+    <v-col cols="12" sm="12" >
+      <v-card min-height="400" flat outlined class="logo pa-0 d-flex justify-center align-center">
+        <v-img
+  lazy-src="https://picsum.photos/id/11/10/6"
+  max-height="1000"
+  max-width="100%"
+  src="https://communitylivingproject.org.au/wp-content/uploads/2020/06/AdobeStock_315581293ropecircleWEB.jpg"
+></v-img>
       </v-card>
     </v-col>
-    <v-col cols="12" sm="12" md="6">
-      <v-card min-height="400" flat outlined class=" py-4 d-flex justify-center align-center">
-        <v-sparkline
-          :value="value"
-          :gradient="gradient"
-          :smooth="radius || false"
-          :padding="padding"
-          :line-width="width"
-          :stroke-linecap="lineCap"
-          :gradient-direction="gradientDirection"
-          :fill="fill"
-          :type="type"
-          :auto-line-width="autoLineWidth"
-          auto-draw
-        />
-      </v-card>
-    </v-col>
-    <v-col cols="12" sm="12" md="3">
-      <v-card min-height="400" flat outlined class="logo py-4 d-flex justify-center align-center">
-        <VuetifyLogo />
-      </v-card>
-    </v-col>
+   
   </v-row>
 </template>
 
