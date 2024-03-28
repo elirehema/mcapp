@@ -9,7 +9,7 @@
   src: url(../fonts/inter/inter_variable.ttf);
 }
 #__nuxt .app {
-  font-family: "FiraSans", sans-serif;
+  font-family: "Inter", sans-serif !important;
 }
 
 html,
@@ -17,7 +17,7 @@ body #app {
   -webkit-font-smoothing: antialiased;
   background: #f3f2f9 !important;
   font-style: normal !important;
-  font-family: "Mulish", sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   margin: 0;
   overflow-x: hidden;
   font-size: 15px !important;
@@ -35,17 +35,20 @@ h5,
 h6,
 p,
 a,
+td,
 span,
 div {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
   font-family: "Mulish", sans-serif !important;
+  font-size: 12px !important;
 }
 
 p.primary--text.text-h6 {
   -webkit-font-smoothing: antialiased;
   font-style: normal !important;
   font-family: "Mulish", sans-serif !important;
+  font-size: 12px !important;
 }
 
 main {
