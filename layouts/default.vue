@@ -347,42 +347,42 @@ export default {
             {
               title: 'Loan repayments',
               icon: 'circle-medium',
-              to: '/anlytics/loan'
+              to: '/analytics/loan'
             },
             {
               title: 'Social Loan repayments',
               icon: 'circle-medium',
-              to: '/anlytics/socialloan'
+              to: '/analytics/socialloan'
             },
             {
               title: 'Loan Transactions',
               icon: 'circle-medium',
-              to: '/anlytics/loantransactions'
+              to: '/analytics/loantransactions'
             },
             {
               title: 'Failed Transactions',
               icon: 'circle-medium',
-              to: '/anlytics/failedtransactions'
+              to: '/analytics/failedtransactions'
             },
             {
               title: 'Group Shares',
               icon: 'circle-medium',
-              to: '/anlytics/groupshares'
+              to: '/analytics/groupshares'
             },
             {
               title: 'Failed Group Creations',
               icon: 'circle-medium',
-              to: '/anlytics/failedgroup'
+              to: '/analytics/retries'
             },
             {
               title: 'Notifications',
               icon: 'circle-medium',
-              to: '/anlytics/notifications'
+              to: '/analytics/notifications'
             },
             {
               title: 'Portal Token',
               icon: 'circle-medium',
-              to: '/anlytics/tokens'
+              to: '/analytics/tokens'
             }
           ]
         }
