@@ -14,7 +14,7 @@
         <template #top>
           <v-toolbar color="primary" flat dark>
             <v-toolbar-title class="text-h6 font-weight-black">
-              GROUPS TRANSACTIONS SUMMARY
+                GENERAL SUMMARY REPORT
             </v-toolbar-title>
             <v-spacer />
             <v-row no-gutters class="d-flex justify">
