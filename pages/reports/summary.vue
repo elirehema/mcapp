@@ -14,29 +14,11 @@
         <template #top>
           <v-toolbar color="primary" flat dark>
             <v-toolbar-title class="text-h6 font-weight-black">
-              GROUPS TRANSACTIONS COUNT SUMMARY REPORT
+              GROUPS TRANSACTIONS SUMMARY
             </v-toolbar-title>
             <v-spacer />
-            <v-row no-gutters>
-              <v-col cols="12" sm="12" md="3">
-                <v-text-field
-                  prepend-inner-icon="mdi-magnify"
-                  label="Enter search text ..."
-                  single-line
-                  hide-details
-                  outlined
-                  filled
-                  height="40"
-                  dense
-                  class="search mr-2"
-                  clearable
-                  autocomplete="off"
-                  light
-                  background-color="white"
-                  v-model="search"
-                />
-              </v-col>
-              <v-col cols="12" sm="12" md="3" class="ml-2">
+            <v-row no-gutters class="d-flex justify">
+              <v-col cols="12" sm="12" md="5" >
                 <v-menu
                   ref="startDateMenu"
                   v-model="startDateMenu"
@@ -59,7 +41,8 @@
                       dense
                       solo
                       light
-                      chips small-chips
+                      chips
+                      small-chips
                       v-bind="attrs"
                       v-on="on"
                     ></v-text-field>
@@ -69,35 +52,22 @@
                     <v-btn small color="warning" @click="menu = false">
                       Cancel
                     </v-btn>
-                    <v-btn small color="green" @click="$refs.startDateMenu.save(dates)">
+                    <v-btn
+                      small
+                      color="green"
+                      @click="$refs.startDateMenu.save(dates)"
+                    >
                       OK
                     </v-btn>
                   </v-date-picker>
                 </v-menu>
               </v-col>
-              <v-col cols="12" sm="12" md="3" class="ml-2">
-                <v-select
-                  v-model="editedItem.transactionType"
-                  :items="transactiontypes"
-                  :item-text="'type'"
-                  :item-value="'transactionTypeId'"
-                  label="Select Transaction Type"
-                  name="editedItem.transactionType"
-                  :rules="[rules.required]"
-                  background-color="white"
-                  
-                  light
-                  single-line
-                  hide-details
-                  filled
-                  dense
-                />
-              </v-col>
-              
+
               <v-col cols="12" sm="12" md="2" class="ml-2">
                 <v-btn color="button" @click.stop="filterResults()">
                   <v-icon left>mdi-magnify</v-icon>
-                  Query Result</v-btn>
+                  Query Result</v-btn
+                >
               </v-col>
             </v-row>
           </v-toolbar>
@@ -111,8 +81,7 @@
 
   <skeleton-table-loader v-else />
 </template>
-  <script>
-import { mapGetters } from "vuex";
+    <script>
 export default {
   data() {
     return {
@@ -125,46 +94,36 @@ export default {
         required: (v) => !!v || "Field is required",
       },
       dates: [
-        new Date(new Date().valueOf()-1000*60*60*24).toISOString().substring(0,10),
-        new Date(new Date()).toISOString().substring(0,10)],
+        new Date(new Date().valueOf() - 1000 * 60 * 60 * 24)
+          .toISOString()
+          .substring(0, 10),
+        new Date(new Date()).toISOString().substring(0, 10),
+      ],
       headers: [
-        { text: "Transaction Date", value: "transactionDate" },
-        { text: "Transaction Count ", value: "totalTransactions" },
-        { text: "Amount SUM(TZS)", value: "totalTransactionAmount" },
-
-        { text: "Transactions Type ", value: "transactionType" },
+        { text: "GROUP TYPE", value: "groupType" },
+        { text: "Amount SUM(TZS)", value: "amount" },
       ],
       show: false,
       editedItem: {
-        
-        transactionType: '',
+        transactionType: "",
       },
     };
   },
   head() {
     return {
-      title: "Groups",
+      title: "Summary",
     };
   },
-  created() {
-    //this.paginate();
-    this.$store.dispatch("_fetchtransactiontypes");
-  },
-  computed: {
-    ...mapGetters({
-      transactiontypes: "transactiontypes",
-    }),
-  },
+
   methods: {
     async filterResults() {
       this.loading = true;
-    var query = {
-      transactionType: this.editedItem.transactionType,
-      startDate: this.dates[0],
+      var query = {
+        startDate: this.dates[0],
         endDate: this.dates[1],
-    }
+      };
       await this.$api
-        .$post("/reports/grouptransactions", query)
+        .$post("/reports/general", query)
         .then((response) => {
           this.loading = false;
           this.reports = response;
@@ -174,4 +133,4 @@ export default {
   },
 };
 </script>
-  
+    

@@ -242,6 +242,10 @@ export default {
               to: '/reports/transactions'
             },
             {
+              title: 'Revenue',
+              icon: 'circle-medium',
+            },
+            {
               title: 'Summary',
               icon: 'circle-medium',
               to: '/reports/summary'
