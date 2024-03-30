@@ -10,7 +10,7 @@
         :items="groups"
         item-key="id"
         class="elevation-1"
-        :loading="loading"
+        :loading="loading" dense
         loading-text="Loading... Please wait"
         :items-per-page="itemsPerPage"
         :footer-props="footerprops"
@@ -60,11 +60,11 @@
           </v-chip>
         </template>
         <template #item.status="{ item }">
-          <v-chip dark :color="item.status == 'ACTIVE' ? 'green':'success'">
+          <v-chip medium dark :color="item.status == 'ACTIVE' ? 'green':'success'">
             <v-avatar v-if="item.status == 'ACTIVE'" left>
-              <v-icon>mdi-checkbox-marked-circle</v-icon>
+              <v-icon small>mdi-checkbox-marked-circle</v-icon>
             </v-avatar>
-            {{ item.status.toLowerCase() }}
+            {{ item.status }}
           </v-chip>
         </template>
         <template #no-data>

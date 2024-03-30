@@ -4,7 +4,7 @@
       <v-data-table
         :headers="headers"
         :items="transactions"
-        item-key="id"
+        item-key="id" dense
         class="elevation-1"
         :search="search"
         :loading="loading"

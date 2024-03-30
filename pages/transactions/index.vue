@@ -8,7 +8,7 @@
       <v-data-table
         :headers="headers"
         :items="transactions"
-        item-key="name"
+        item-key="name" dense
         class="elevation-1"
         :loading="loading"
         loading-text="Loading... Please wait"

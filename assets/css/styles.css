@@ -136,6 +136,31 @@ button:not([class^="v-btn v-btn--outlined"]) span.v-btn__content {
   text-decoration-color: white;
 }
 
+thead {
+  background-color: #4c4c4c;
+}
+thead tr th span {
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table tbody tr td {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+th, td {
+  text-align: left;
+  padding: 0px;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f1f2;
+}
+
 .v-input.search {
   max-width: 500px !important;
   align-content: flex-start !important;

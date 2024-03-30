@@ -5,7 +5,7 @@
     :items="members"
     item-key="createdDate"
     class="elevation-1"
-    :loading="loading"
+    :loading="loading" dense
     loading-text="Loading... Please wait"
     :items-per-page="itemsPerPage"
     :footer-props="footerprops"
