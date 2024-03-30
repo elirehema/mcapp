@@ -55,7 +55,7 @@
           <span>{{ item.createdDate | dateformat }}</span>
         </template>
         <template #item.id="{item}">
-          <v-chip small color="bg lighten-2" class="white--text">
+          <v-chip small color="green lighten-2" class="white--text">
             {{ item.id }}
           </v-chip>
         </template>

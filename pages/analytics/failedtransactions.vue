@@ -46,6 +46,11 @@
         <template #item.transactionDate="{ item }">
           <span>{{ item.transactionDate | simpledateformat }}</span>
         </template>
+        <template #item.action="{ item }">
+          <v-btn outlined small color="button">
+            <v-icon left>mdi-sync</v-icon>
+            Submit for Retry</v-btn>
+        </template>
       </v-data-table>
     </v-col>
   </v-row>

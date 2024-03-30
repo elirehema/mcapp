@@ -90,7 +90,7 @@
       </v-list>
       <template #append>
         <div class="py-2 mx-3">
-          <v-btn block rounded color="warning" @click="$store.dispatch('_logoutsession')">
+          <v-btn block outlined color="button" @click="$store.dispatch('_logoutsession')">
             <v-icon left>
               mdi-logout-variant
             </v-icon>
