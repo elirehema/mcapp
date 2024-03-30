@@ -46,7 +46,7 @@
               @click:clear="paginate(initialPage)"
         
         />
-        <v-btn @click="filterfromdatabase(initialPage)">
+        <v-btn color="button" @click="search != null ? filterfromdatabase(initialPage):null">
           <v-icon left>mdi-filter-variant</v-icon>
           Query result</v-btn>
           </v-toolbar>

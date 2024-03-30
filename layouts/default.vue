@@ -11,8 +11,8 @@
       :mini-variant.sync="mini"
       style="max-height: 96.8%;"
     >
-      <v-list dense dark>
-        <v-list-item dense link>
+      
+        <v-list-item :class="mini ? 'px-2':''" link>
           <v-list-item-avatar color="whitish">
             <v-img :src="miniUrl" class="vuetify-logo" />
           </v-list-item-avatar>
@@ -23,19 +23,19 @@
             <v-list-item-subtitle>Mkoba Platform</v-list-item-subtitle>
           </v-list-item-content>
           <v-btn icon @click.stop="mini = !mini">
-            <v-icon v-if="!mini">mdi-chevron-left</v-icon>
-            <v-icon v-else>mdi-chevron-right</v-icon>
+            <v-icon v-if="!mini">mdi-arrow-left-thin</v-icon>
+            <v-icon v-else>mdi-arrow-right-thin</v-icon>
           </v-btn>
         </v-list-item>
-      </v-list>
+      
 
       <v-divider />
-      <v-list :shaped="!mini" nav>
+      <v-list  nav>
         <v-list-item
           v-for="child in menus"
           :key="child.title"
           :to="child.to"
-          link
+          link 
           color="success"
           :class="mini ? 'ml-0':'pl-4'"
         >
@@ -51,7 +51,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-list :shaped="!mini" :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
+      <v-list  :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
         <v-list-group
           v-for="item in menuitems"
           :key="item.title"
@@ -74,15 +74,16 @@
             v-for="child in item.menus"
             :key="child.to"
             :to="child.to"
-            color="white"
-            class="pl-9"
+            link
+            color="success" dense
+            class="px-9 mr-2"
             active-class="white--text"
           >
             <v-list-item-icon>
               <v-icon>{{ "mdi-" + child.icon }}</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-subtitle class="font-weight-normal text-body-2" v-html="child.title" />
+              <v-list-item-subtitle class="font-weight-normal" v-html="child.title" />
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
@@ -155,7 +156,7 @@ export default {
     return {
       clipped: false,
       drawer: true,
-      mini: true,
+      mini: false,
       fixed: false,
       messages: 8,
       adv: 7,
