@@ -20,7 +20,7 @@
               </v-toolbar-title>
               <v-spacer />
               <v-row no-gutters class="d-flex justify-end">
-                <v-col cols="12" sm="12" md="4" class="ml-2">
+                <v-col cols="12" sm="12" md="5" class="ml-2">
                   <v-text-field
                     prepend-inner-icon="mdi-dialpad"
                     label="MSISDN"
@@ -30,7 +30,6 @@
                     filled
                     height="40"
                     dense
-                    class="search mr-2"
                     clearable
                     autocomplete="off"
                     light

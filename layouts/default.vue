@@ -1,16 +1,18 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
+    v-model="drawer"
       :clipped="false"
       permanent
       color="primary"
       dark
       app
       height="100%"
+      :mini-variant.sync="mini"
       style="max-height: 96.8%;"
     >
-      <v-list dark>
-        <v-list-item link>
+      <v-list dense dark>
+        <v-list-item dense link>
           <v-list-item-avatar color="whitish">
             <v-img :src="miniUrl" class="vuetify-logo" />
           </v-list-item-avatar>
@@ -20,18 +22,22 @@
             </v-list-item-title>
             <v-list-item-subtitle>Mkoba Platform</v-list-item-subtitle>
           </v-list-item-content>
+          <v-btn icon @click.stop="mini = !mini">
+            <v-icon v-if="!mini">mdi-chevron-left</v-icon>
+            <v-icon v-else>mdi-chevron-right</v-icon>
+          </v-btn>
         </v-list-item>
       </v-list>
 
       <v-divider />
-      <v-list shaped nav>
+      <v-list :shaped="!mini" nav>
         <v-list-item
           v-for="child in menus"
           :key="child.title"
           :to="child.to"
           link
           color="success"
-          class="pl-4"
+          :class="mini ? 'ml-0':'pl-4'"
         >
           <v-list-item-icon>
             <v-icon color="white">
@@ -45,7 +51,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
-      <v-list shaped class="mt-0 pt-0 ml-2" dark>
+      <v-list :shaped="!mini" :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
         <v-list-group
           v-for="item in menuitems"
           :key="item.title"
@@ -148,7 +154,8 @@ export default {
   data () {
     return {
       clipped: false,
-      drawer: false,
+      drawer: true,
+      mini: true,
       fixed: false,
       messages: 8,
       adv: 7,

@@ -20,7 +20,7 @@
                 Query Transactions
               </v-toolbar-title>
               <v-spacer />
-              <v-row no-gutters>
+              <v-row no-gutters class="d-flex justify-end">
                
                 <v-col cols="12" sm="12" md="5" class="ml-2">
                   <v-menu
@@ -70,7 +70,7 @@
   
                 <v-col cols="12" sm="12" md="2" class="ml-2">
                   <v-btn color="button" @click.stop="paginate()">
-                    <v-icon left>mdi-magnify</v-icon>
+                    <v-icon left>mdi-filter-variant</v-icon>
                     Query Result</v-btn
                   >
                 </v-col>
