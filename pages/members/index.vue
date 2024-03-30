@@ -7,10 +7,11 @@
     class="elevation-1"
     :loading="loading"
     loading-text="Loading... Please wait"
+    :items-per-page="itemsPerPage"
     :footer-props="footerprops"
     :server-items-length="pages"
     @click:row="rowclick"
-    @pagination="paginate"
+    @pagination="handlePagination"
   >
     <template #top>
       <v-toolbar dark color="primary" flat>
@@ -19,6 +20,7 @@
         </v-toolbar-title>
         <v-spacer />
         <v-text-field
+        v-model="search"
           prepend-inner-icon="mdi-magnify"
           label="Search member by name, MSISDN"
           single-line
@@ -31,9 +33,12 @@
           clearable
           autocomplete="off"
           light
+          @click:clear="paginate(initialPage)"
           background-color="white"
-          @input="filterfromdatabase"
         />
+        <v-btn @click="filterfromdatabase(initialPage)">
+          <v-icon left>mdi-filter-variant</v-icon>
+          Query result</v-btn>
       </v-toolbar>
     </template>
     <template #item.created="{item}">
@@ -59,7 +64,9 @@ export default {
     return {
       members: null,
       pages: 0,
+      search: null,
       loading: false,
+      
       headers: [
         { text: 'Name ', value: 'name' },
         { text: 'MSISDN ', value: 'msisdn' },
@@ -82,7 +89,7 @@ export default {
     }
   },
   created () {
-    this.paginate({ page: 0, itemsPerPage: 15 })
+    this.paginate(this.initialPage)
   },
   methods: {
     rowclick (v) {
@@ -90,12 +97,20 @@ export default {
       this.$router.push(`/members/${v.msisdn}`)
       // console.log(v)
     },
-    async filterfromdatabase (value) {
+    handlePagination(it){
+      if (this.search === null){
+        this.paginate(it)
+      }else{
+        this.filterfromdatabase(it)
+      }
+
+    },
+    async filterfromdatabase (it) {
       this.loading = true
-      await this.$api.$get('/members/search', { params: { page: 0, size: 5, sort: 'name asc', search: value } })
+      await this.$api.$get('/members/search', { params: { page: it.page, size: it.itemsPerPage, sort: 'name asc', search: this.search } })
         .then((response) => {
           this.loading = false
-          /// this.pages = response.totalRows
+          this.pages = response.totalRows
           this.page = response.currentPage
           this.members = response.results
         }).catch((_err) => {

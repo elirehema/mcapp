@@ -12,6 +12,7 @@
         class="elevation-1"
         :loading="loading"
         loading-text="Loading... Please wait"
+        :items-per-page="itemsPerPage"
         :footer-props="footerprops"
         :server-items-length="pages"
         @click:row="rowclick"
@@ -28,6 +29,7 @@
             </v-toolbar-title>
             <v-spacer />
             <v-text-field
+            v-model="search"
               prepend-inner-icon="mdi-magnify"
               label="Search group by name, id"
               single-line
@@ -41,8 +43,12 @@
               autocomplete="off"
               light
               background-color="white"
-              @input="filterfromdatabase"
-            />
+              @click:clear="paginate(initialPage)"
+        
+        />
+        <v-btn @click="filterfromdatabase(initialPage)">
+          <v-icon left>mdi-filter-variant</v-icon>
+          Query result</v-btn>
           </v-toolbar>
         </template>
         <template #item.created="{item}">
@@ -75,7 +81,7 @@ export default {
   data () {
     return {
       groups: null,
-      search: '',
+      search: null,
       pages: 0,
       loading: false,
       headers: [
@@ -107,9 +113,16 @@ export default {
       this.$router.push(`/groups/${v.id}`)
       // console.log(v)
     },
-    async filterfromdatabase (value) {
+    handlePagination(it){
+      if (this.search === null){
+        this.paginate(it)
+      }else{
+        this.filterfromdatabase(it)
+      }
+    },
+    async filterfromdatabase (it) {
       this.loading = true
-      await this.$api.$get('/groups/search', { params: { page: 0, size: 5, sort: 'groupid desc', search: value } })
+      await this.$api.$get('/groups/search', { params: { page: it.page, size: it.itemsPerPage, sort: 'groupid desc', search: this.search } })
         .then((response) => {
           this.loading = false
           this.pages = response.totalRows

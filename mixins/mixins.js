@@ -9,6 +9,7 @@ const mixins = {
     return {
       delay: 3000,
       itemsPerPage: 15,
+      initialPage: { page: 0, itemsPerPage: 15 },
       footerprops: {
         'items-per-page-options': [5, 10, 15, 20, 30, 40, 50, 10]
       }
