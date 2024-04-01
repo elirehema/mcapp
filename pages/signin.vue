@@ -1,12 +1,12 @@
 <template>
   <v-form class="form-box" @submit.prevent="formSubmit">
     <v-container height="100%">
-      <v-row class="mt-0">
+      <v-row v-if="false" class="mt-0">
         <v-col cols="12" sm="12" md="2">
           <img
             src="@/assets/images/logo.png"
             alt="homepage"
-            width="160"
+            width="100"
             class="ml-2 dark-logo"
           >
         </v-col>
@@ -18,11 +18,11 @@
             <v-list color="transparent">
               <v-list-item three-line>
                 <v-list-item-content>
-                  <v-list-item-title class="text-sm-h4 text-md-h3 text-lg-h2 primary--text text-sm-center text-md-left">
-                    Ngazi Technologies
+                  <v-list-item-title class="text-sm-h4 text-md-h3 text-lg-h2 primary--text text-xs-center font-weight-black text-md-left">
+                    MKOBA DASHBOARD
                   </v-list-item-title>
-                  <v-list-item-subtitle class="mt-10 text-sm-h5 text-md-h4 text-lg-h4 black--text text-sm-center text-md-left">
-                    Lorem Ipsum dolor sit de amet cons
+                  <v-list-item-subtitle class="mt-10 text-sm-h5 text-md-h6 text-lg-h5 text-sm-center text-md-left">
+                    Mkoba administrator dashboard 
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>

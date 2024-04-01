@@ -31,7 +31,8 @@ export default function ({ $axios, redirect, store }, inject) {
   api.onResponseError((error) => {
     const code = parseInt(error.response && error.response.status)
     if (code === 404) {
-      const message = error.response.data.defaultUserMessage
+      const message = error.response.data.message
+      console.log(message)
       Vue.toasted.error(`${message}`, {
         icon: 'close-circle',
         position: 'top-center',
@@ -44,13 +45,17 @@ export default function ({ $axios, redirect, store }, inject) {
     if (code === 401) {
       const message = error.response.data.error
       store.dispatch('_logoutsession')
-      /**
-      *  console.log(message)
-      Vue.toasted.error(`${message}`, {
-        icon: 'close-circle', position: 'top-center', keepOnHover: true, type: 'info',
-        theme: 'outline', duration: 5000
-      });
-      **/
+      
+    }
+    if(code == 502){
+      const message = error.response.data.message
+      if (confirm(message)) {
+        store.dispatch('_logoutsession')
+      } else {
+        store.dispatch('_logoutsession')
+      }
+     
+    
     }
   })
 

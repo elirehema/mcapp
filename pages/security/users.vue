@@ -74,7 +74,7 @@ export default {
     }
   },
   created () {
-    this.paginate({ page: 0, itemsPerPage: 15 })
+    this.paginate({ page: 0, itemsPerPage: this.itemsPerPage })
   },
   methods: {
     async filterfromdatabase (value) {
