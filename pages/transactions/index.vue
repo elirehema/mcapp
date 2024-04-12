@@ -138,7 +138,7 @@
         </template>
         <template #item.group="{ item }">
           <nuxt-link :to="`/groups/${item.groupId}`">
-            <span>{{ item.groupId }} </span>
+            <span>{{ item.group.name }} </span>
           </nuxt-link>
         </template>
         <template #no-data>
@@ -166,7 +166,7 @@ export default {
         { text: 'Destination', value: 'destination' },
         { text: 'Amount', value: 'amount' },
         { text: 'Member', value: 'member' },
-        { text: 'Group ID', value: 'group' },
+        { text: 'Group', value: 'group' },
         { text: 'Receipt ', value: 'receipt' },
         { text: 'Transaction Type ', value: 'type' },
         { text: 'SMS', value: 'sms' },
