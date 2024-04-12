@@ -90,7 +90,7 @@ export default {
   methods:{
     rowclick (v) {
       this.show = true
-      this.$router.push(`/groups/${this.$route.params.id}/${v.msisdn}`)
+      this.$router.push(`/groups/${this.$route.params.id}/${v.id}`)
       // console.log(v)
     }
   }
