@@ -16,7 +16,7 @@
         :footer-props="footerprops"
         :server-items-length="pages"
         @click:row="rowclick"
-        @pagination="paginate"
+        @pagination="handlePagination"
       >
         <template #top>
           <v-toolbar

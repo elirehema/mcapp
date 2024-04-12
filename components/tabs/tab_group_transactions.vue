@@ -27,12 +27,16 @@
             <v-spacer />
           </v-toolbar>
         </template>
-        <template #item.type="{item}">
+        <template v-if="transactionType" #item.type="{item}">
           <span>{{ item.transactionType.type }}-({{ item.transactionType.flag }})</span>
         </template>
         <template #item.destination="{item}">
           <span v-if="item.destinationAccount != '-1'">{{ item.destinationAccount }}</span>
           <span v-else class="grey--text"> Not Provided </span>
+        </template>
+        <template #item.receipt="{item}">
+          <span v-if="item.receipt != '-1'">{{ item.receipt }}</span>
+          <span v-else class="grey--text"> Not Receipt </span>
         </template>
         <template #item.sms="{ item }">
           <v-tooltip bottom>
@@ -130,7 +134,7 @@ export default {
     }
   },
   created () {
-    this.paginate({ page: 0, itemsPerPage: 15 })
+    this.paginate({ page: 0, itemsPerPage: this.itemsPerPage })
   },
   methods: {
     rowclick (v) {

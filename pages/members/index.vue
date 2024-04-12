@@ -110,18 +110,19 @@ export default {
       await this.$api.$get('/members/search', { params: { page: it.page, size: it.itemsPerPage, sort: 'name asc', search: this.search } })
         .then((response) => {
           this.loading = false
+          this.members = response.results
           this.pages = response.totalRows
           this.page = response.currentPage
-          this.members = response.results
+         
         }).catch((_err) => {
         })
     },
     async paginate (it) {
       await this.$api.$get('/members', { params: { page: it.page, size: it.itemsPerPage, sort: 'name desc' } })
         .then((response) => {
+          this.members = response.results
           this.pages = response.totalRows
           this.page = response.currentPage
-          this.members = response.results
         }).catch((_err) => {
         })
     }
