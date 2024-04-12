@@ -1,105 +1,103 @@
 <template>
-  <v-row
+  <v-data-table
     v-if="loans"
-    class="d-flex justify-space-between"
-    no-gutters
+    :headers="headers"
+    :items="loans"
+    item-key="name"
+    class="elevation-1"
+    :footer-props="footerprops"
+    :server-items-length="pages"
+    @pagination="paginate"
   >
-    <v-col cols="12">
-      <v-data-table
-        :headers="headers"
-        :items="loans"
-        item-key="name"
-        class="elevation-1"
-        :footer-props="footerprops"
-        :server-items-length="pages"
-        @pagination="paginate"
-      >
-        <template #top>
-          <v-toolbar
-            color=""
-            flat
-          >
-            <v-toolbar-title class=" font-weight-mediumm  text-uppercase">
-              {{member.name }} {{member.familyName}} Loans in  Group <strong>{{ group.name }}</strong>
-            </v-toolbar-title>
-            <v-spacer />
-          </v-toolbar>
-        </template>
-        <template #item.created="{item}">
-          <span>{{ item.transactionDate | dateformat }}</span>
-        </template>
-        <template #item.status="{ item }">
-          <v-chip small color="warning">{{ item.loanStatus }}</v-chip>
-        </template>
-        <template #no-data>
-          <span>No loan found ...</span>
-        </template>
-        <template #item.type="{item}">
-          <span>{{ item.loanType.type }}-({{ item.loanType.flag }})</span>
-        </template>
-      </v-data-table>
-    </v-col>
-  </v-row>
-
+    <template #top>
+      <v-toolbar color="primary" dense dark flat>
+        <v-toolbar-title class="font-weight-mediumm text-uppercase">
+          {{ member.name }} {{ member.familyName }} Loans in Group
+          <strong>{{ group.name }}</strong>
+        </v-toolbar-title>
+        <v-spacer />
+      </v-toolbar>
+    </template>
+    <template #item.created="{ item }">
+      <span>{{ item.transactionDate | dateformat }}</span>
+    </template>
+    <template #item.status="{ item }">
+      <v-chip small color="warning">{{ item.loanStatus }}</v-chip>
+    </template>
+    <template #no-data>
+      <span>No loan found ...</span>
+    </template>
+    <template #item.type="{ item }">
+      <span>{{ item.loanType.type }}-({{ item.loanType.flag }})</span>
+    </template>
+  </v-data-table>
   <skeleton-table-loader v-else />
 </template>
 <script>
 export default {
-  props:{
-    group:{
+  props: {
+    group: {
       type: Object,
-      default: null
+      default: null,
     },
-    member:{
+    member: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
-  data () {
+  data() {
     return {
       loans: null,
       pages: 0,
       headers: [
-        { text: 'MSISDN', value: 'msisdn' },
-        { text: 'Loan Amount', value: 'loanAmount' },
-        { text: 'Loan Balance', value: 'loanBalance' },
-        { text: 'Interest ', value: 'interest' },
-        { text: 'Loan Type ', value: 'type' },
-        { text: 'Loan Status ', value: 'status' },
-        { text: 'Loan Date', value: 'loanDate' },
-        { text: 'Last Repayment Date', value: 'lastRepaymentDate' },
-        { text: 'Due Date', value: 'loanDueDate' }
-
+        { text: "MSISDN", value: "msisdn" },
+        { text: "Loan Amount", value: "loanAmount" },
+        { text: "Loan Balance", value: "loanBalance" },
+        { text: "Interest ", value: "interest" },
+        { text: "Loan Type ", value: "type" },
+        { text: "Loan Status ", value: "status" },
+        { text: "Loan Date", value: "loanDate" },
+        { text: "Last Repayment Date", value: "lastRepaymentDate" },
+        { text: "Due Date", value: "loanDueDate" },
+        { text: "", value: "actions" },
       ],
       show: false,
-      editedItem: {}
-    }
+      editedItem: {},
+    };
   },
-  head () {
+  head() {
     return {
-      title: 'Loans'
-    }
+      title: "Loans",
+    };
   },
-  created () {
-    this.paginate({ page: 0, itemsPerPage: 15 })
+  created() {
+    this.paginate({ page: 0, itemsPerPage: 15 });
   },
   methods: {
-    rowclick (v) {
-      this.show = true
-      this.$router.push(`/transactions/${v.id}`)
+    rowclick(v) {
+      this.show = true;
+      this.$router.push(`/transactions/${v.id}`);
       // console.log(v)
     },
 
-    async paginate (it) {
-      await this.$api.$get('/members/loans', { params: { page: it.page, size: it.itemsPerPage, sort: 'loan_request_id asc', msisdn: this.$route.params.memberid, gid: this.$route.params.id } })
-        .then((response) => {
-          this.pages = response.totalRows
-          this.page = response.currentPage
-          this.loans = response.results
-        }).catch((_err) => {
+    async paginate(it) {
+      await this.$api
+        .$get("/members/loans", {
+          params: {
+            page: it.page,
+            size: it.itemsPerPage,
+            sort: "loan_request_id asc",
+            msisdn: this.$route.params.memberid,
+            gid: this.$route.params.id,
+          },
         })
-    }
-  }
-
-}
+        .then((response) => {
+          this.pages = response.totalRows;
+          this.page = response.currentPage;
+          this.loans = response.results;
+        })
+        .catch((_err) => {});
+    },
+  },
+};
 </script>

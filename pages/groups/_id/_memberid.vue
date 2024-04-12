@@ -4,9 +4,11 @@
     <v-app-bar
       fade-img-on-scroll
       scroll-threshold="500"
+      color="primary" extended
+      dark
     >
-      <v-toolbar-title class=" font-weight-medium">
-        {{ group.name }}-:-{{ member.name }} {{ member.familyName }}
+      <v-toolbar-title class="font-weight-bold text-h5">
+        {{ member.name }} {{ member.familyName }} IN {{ group.name }}
       </v-toolbar-title>
 
       <v-spacer />
@@ -27,17 +29,6 @@
         </v-tabs>
       </template>
     </v-app-bar>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item
-        v-for="item in items"
-        :key="item"
-      >
-        <v-card flat>
-          <v-card-text />
-        </v-card>
-      </v-tab-item>
-    </v-tabs-items>
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <tab-member-group-transactions :member="member" :group="group" />

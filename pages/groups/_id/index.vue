@@ -1,7 +1,7 @@
 
 <template>
   <v-card v-if="group" flat>
-    <v-toolbar
+    <v-app-bar
       fade-img-on-scroll
       scroll-threshold="500"
       color="primary"
@@ -37,7 +37,7 @@
           </v-tab>
         </v-tabs>
       </template>
-    </v-toolbar>
+    </v-app-bar>
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <tab-group-services />

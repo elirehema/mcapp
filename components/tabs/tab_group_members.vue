@@ -3,6 +3,7 @@
     v-if="members"
     :headers="headers"
     :items="members"
+    dense
     sort-by="calories"
     class="elevation-1"
     @click:row="rowclick"
@@ -42,7 +43,7 @@
       <span>{{ item.name.split(" ")[0] + " "+ item.familyName.split(" ")[0] }}</span>
     </template>
     <template #item.created="{item}">
-      <span>{{ item.createdDate | dateformat }}</span>
+      <span>{{ item.createdDate | simpledateformat }}</span>
     </template>
     <template #item.status="{ item }">
       <v-chip dark small :color="item.status == 'ACTIVE' ? 'green':'success'">
@@ -53,6 +54,9 @@
         </v-avatar>
         {{ item.status }}
       </v-chip>
+    </template>
+    <template #item.actions="{item}">
+      <v-icon color="grey" small>mdi-eye</v-icon>
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
@@ -79,13 +83,14 @@ export default {
       { text: 'Dividends ', value: 'dividend' },
       { text: 'Social Fund', value: 'socialfund' },
       { text: 'S.F Withdraws', value: 'socialfundWithdraws' },
-      { text: 'Created Date', value: 'created' }
+      { text: 'Created Date', value: 'created' },
+      { text: '', value: 'actions' }
     ]
   }),
   methods:{
     rowclick (v) {
       this.show = true
-      this.$router.push(`/members/${v.msisdn}`)
+      this.$router.push(`/groups/${this.$route.params.id}/${v.msisdn}`)
       // console.log(v)
     }
   }
