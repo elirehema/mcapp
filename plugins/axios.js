@@ -47,7 +47,7 @@ export default function ({ $axios, redirect, store }, inject) {
       store.dispatch('_logoutsession')
       
     }
-    if(code == 502){
+    if(code == 502 || code == 400){
       const message = error.response.data.message
       if (confirm(message)) {
         store.dispatch('_logoutsession')

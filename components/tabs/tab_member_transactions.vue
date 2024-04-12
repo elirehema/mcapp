@@ -81,6 +81,7 @@ export default {
       pages: 0,
       headers: [
         { text: 'MSISDN', value: 'msisdn' },
+        { text: 'Group ', value: 'group.name' },
         { text: 'Source ', value: 'sourceAccount' },
         { text: 'Destination', value: 'destination' },
         { text: 'Amount', value: 'amount' },
