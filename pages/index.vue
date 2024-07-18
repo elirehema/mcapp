@@ -4,7 +4,7 @@
   lazy-src="https://picsum.photos/id/11/10/6"
   max-height="1000"
   max-width="100%"
-  src="https://communitylivingproject.org.au/wp-content/uploads/2020/06/AdobeStock_315581293ropecircleWEB.jpg"
+  src="https://digital.vodacom.co.tz/tube-api/api/v1/videos/643d42442e0d7434b8bdb286/image"
 ></v-img>
      
 </template>
