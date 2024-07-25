@@ -4,11 +4,13 @@
       :headers="headers"
       :items="permissions"
       sort-by="calories"
+      dense
+      items-per-page="15"
       class="elevation-1"
       
     >
       <template v-slot:top>
-        <v-toolbar color="table" flat>
+        <v-toolbar color="primary" flat>
           <v-toolbar-title class="text-h5 font-weight-bold white--text">Pemissions</v-toolbar-title>
         </v-toolbar>
       </template>

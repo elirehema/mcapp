@@ -15,7 +15,7 @@
           <template #top>
             <v-toolbar color="primary" flat dark>
               <v-toolbar-title class="text-h5 font-weight-black">
-                PORTAL SYSTEM USERS ROLES
+                USERS ROLES
               </v-toolbar-title>
               <v-spacer />
               <v-row no-gutters>

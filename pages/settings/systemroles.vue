@@ -9,7 +9,7 @@
       <template v-slot:top>
         <v-toolbar color="primary" flat>
           <v-toolbar-title class="text-h5 font-weight-bold white--text"
-            >Roles</v-toolbar-title
+            >PORTAL SYSTEM USERS ROLES</v-toolbar-title
           >
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="650px">
@@ -124,7 +124,7 @@
         </v-btn>
   
         <v-btn
-          color="gold"
+          color="green"
           class="text-capitalize"
           x-small
           v-if="!item.active && $rules.hasPermission('role.activate')"

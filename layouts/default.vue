@@ -348,7 +348,7 @@ export default {
             {
               title: 'Access Control',
               icon: 'circle-medium',
-              to: '/settings/access'
+              to: '/settings/systemroles'
             }
           ]
         },
