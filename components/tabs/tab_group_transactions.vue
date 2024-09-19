@@ -42,14 +42,14 @@
             <template #activator="{ on, attrs }">
               <v-icon
                 v-if="item.sms == '-1' || item.sms === ''"
-                disabled
+                disabled small
                 v-bind="attrs"
                 color="button darken-2"
                 v-on="on"
               >
                 mdi-message-badge-outline
               </v-icon>
-              <v-icon v-else v-bind="attrs" color="button darken-2" v-on="on">
+              <v-icon v-else small v-bind="attrs" color="button darken-2" v-on="on">
                 mdi-message-badge
               </v-icon>
             </template>

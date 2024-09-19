@@ -15,7 +15,8 @@ export default {
     middleware: ['router']
   },
   env: {
-    baseUrl: isDev ? 'http://localhost:8084/api/v1' : 'https://ibank.tcbbank.co.tz:8443/Savings/portal'
+    baseUrl: isDev ? 'https://eppg.ngazi.co.tz/Savings/portal' : 'https://eppg.ngazi.co.tz/Savings/portal'
+    //'https://ibank.tcbbank.co.tz:8443/Savings/portal'
     //'http://uat.tcbbank.co.tz:8443/Savings/portal'
     //'https://eppg.ngazi.co.tz/Savings/portal'
   },

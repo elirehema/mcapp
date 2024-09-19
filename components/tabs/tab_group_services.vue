@@ -8,6 +8,7 @@
       <v-data-table
         :headers="headers"
         :items="types"
+        dense
         item-key="transactionTypeId"
         class="elevation-0"
         :items-per-page="15"

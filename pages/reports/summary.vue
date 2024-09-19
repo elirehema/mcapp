@@ -17,7 +17,7 @@
                 GENERAL SUMMARY REPORT
             </v-toolbar-title>
             <v-spacer />
-            <v-row no-gutters class="d-flex justify">
+            <v-row no-gutters class="d-flex justify-end mr-3">
               <v-col cols="12" sm="12" md="5" >
                 <v-menu
                   ref="startDateMenu"

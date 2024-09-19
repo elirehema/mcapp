@@ -17,7 +17,7 @@
               GROUPS TRANSACTIONS COUNT SUMMARY REPORT
             </v-toolbar-title>
             <v-spacer />
-            <v-row no-gutters>
+            <v-row no-gutters class="d-flex justify-end mr-3">
               <v-col cols="12" sm="12" md="3">
                 <v-text-field
                   prepend-inner-icon="mdi-magnify"

@@ -46,14 +46,17 @@
       <span>{{ item.createdDate | simpledateformat }}</span>
     </template>
     <template #item.status="{ item }">
-      <v-chip dark small :color="item.status == 'ACTIVE' ? 'green':'success'">
+      <!--<v-chip dark x-small class="py-3" :color="item.status == 'ACTIVE' ? 'green':'success'">
         <v-avatar v-if="item.status == 'ACTIVE'" left>
-          <v-icon small>
-            mdi-checkbox-marked-circle
+          <v-icon color="white" small>
+            mdi-check-circle-outline
           </v-icon>
         </v-avatar>
         {{ item.status }}
-      </v-chip>
+      </v-chip>-->
+      <v-icon v-if="item.status == 'ACTIVE'" color="green" small>
+            mdi-check-circle-outline
+          </v-icon>
     </template>
     <template #item.actions="{item}">
       <v-icon color="grey" small>mdi-eye</v-icon>
@@ -77,13 +80,11 @@ export default {
       { text: 'Role', value: 'role' },
       { text: 'Status ', value: 'status' },
       { text: 'Deposits ', value: 'deposits' },
-      { text: 'Dividends ', value: 'dividend' },
-      { text: 'Penalty', value: 'penalty' },
+      { text: 'Repayment', value: 'repayment' },
+      { text: 'Penalty Paid', value: 'penaltyPaid' },
       { text: 'Withdraws', value: 'withdraws' },
       { text: 'Dividends ', value: 'dividend' },
-      { text: 'Social Fund', value: 'socialfund' },
-      { text: 'S.F Withdraws', value: 'socialfundWithdraws' },
-      { text: 'Created Date', value: 'created' },
+      { text: 'Date', value: 'created' },
       { text: '', value: 'actions' }
     ]
   }),

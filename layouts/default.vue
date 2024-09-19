@@ -30,33 +30,37 @@
       
 
       <v-divider />
-      <v-list  nav>
+      <v-list  v-if="false" nav>
         <v-list-item
           v-for="child in menus"
           :key="child.title"
           :to="child.to"
-          link 
+          link dense
           color="success"
           :class="mini ? 'ml-0':'pl-4'"
         >
-          <v-list-item-icon>
+          <!--<v-list-item-icon>
             <v-icon color="white">
               {{ 'mdi-'+ child.icon }}
             </v-icon>
-          </v-list-item-icon>
+          </v-list-item-icon>-->
           <v-list-item-content>
-            <v-list-item-title>
-              <span class="font-weight-medium white--text">{{ child.title }}</span>
+            <v-list-item-title class="font-weight-medium">
+              <v-icon left color="white">
+              {{ 'mdi-'+ child.icon }}
+            </v-icon>
+              {{ child.title }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
       <v-list  :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
-        <v-list-group
-          v-for="item in menuitems"
+        <template v-for="item in menus">
+          <template v-if="item.subs">
+          <v-list-group 
           :key="item.title"
           v-model="item.active"
-          :prepend-icon="`mdi-${item.icon}`"
           active-class="white--text"
           append-icon="mdi-chevron-down"
           no-action
@@ -65,6 +69,66 @@
           <template #activator>
             <v-list-item-content>
               <v-list-item-title class="font-weight-medium ">
+                <v-icon left>{{ `mdi-${item.icon}` }}</v-icon>
+                {{ item.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </template>
+
+          <v-list-item 
+            v-for="sub in item.submenus"
+            :key="sub.to"
+            :to="sub.to"
+            link
+            color="success" dense
+            class="pl-5 mr-2"
+            active-class="white--text"
+          >
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-normal">
+                <v-icon left>{{ "mdi-" + sub.icon }}</v-icon>
+                {{ sub.title }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
+        </template>
+          <v-list-item v-else
+          :key="item.title"
+          :to="item.to"
+          link dense
+          color="success"
+          :class="mini ? 'ml-0':'pl-4'"
+        >
+          <v-list-item-content>
+            <v-list-item-title class="font-weight-medium">
+              <v-icon left color="white">
+              {{ 'mdi-'+ item.icon }}
+            </v-icon>
+              {{ item.title }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+       
+        
+        </template>
+        
+      </v-list>
+
+      <v-list v-if="false"  :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
+        <v-list-group
+          v-for="item in menuitems"
+          :key="item.title"
+          v-model="item.active"
+          active-class="white--text"
+          append-icon="mdi-chevron-down"
+          no-action
+          color="white"
+        >
+          <template #activator>
+            <v-list-item-content>
+              <v-list-item-title class="font-weight-medium ">
+                <v-icon left>{{ `mdi-${item.icon}` }}</v-icon>
                 {{ item.title }}
               </v-list-item-title>
             </v-list-item-content>
@@ -76,21 +140,21 @@
             :to="child.to"
             link
             color="success" dense
-            class="px-9 mr-2"
+            class="pl-5 mr-2"
             active-class="white--text"
           >
-            <v-list-item-icon>
-              <v-icon>{{ "mdi-" + child.icon }}</v-icon>
-            </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-subtitle class="font-weight-normal" v-html="child.title" />
+              <v-list-item-title class="font-weight-normal">
+                <v-icon left>{{ "mdi-" + child.icon }}</v-icon>
+                {{ child.title }}
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
       </v-list>
       <template #append>
         <div class="py-2 mx-3">
-          <v-btn block outlined color="button" @click="$store.dispatch('_logoutsession')">
+          <v-btn block small color="button" @click="$store.dispatch('_logoutsession')">
             <v-icon left>
               mdi-logout-variant
             </v-icon>
@@ -165,22 +229,247 @@ export default {
         {
           title: 'Home',
           icon: 'home-outline',
+          subs: false,
           to: '/'
         },
         {
           title: 'Groups',
           icon: 'account-group-outline',
+          subs: false,
           to: '/groups'
         },
         {
           title: 'Members',
           icon: 'account-group-outline',
+          subs: false,
           to: '/members'
+        },
+        /** 
+        {
+          title: 'Reports',
+          icon: 'file-chart',
+          subs: false,
+          to: '/transactions'
+        },
+        **/
+        {
+          title: 'Queries',
+          icon: 'database-search',
+          subs: true,
+          submenus: [
+            {
+              title: 'Subscribers',
+              icon: 'circle-medium',
+              to: '/queries/subscribers'
+            },
+            {
+              title: 'Groups',
+              icon: 'circle-medium',
+              to: '/queries/groups'
+            },
+            {
+              title: 'Transactions',
+              icon: 'circle-medium',
+              to: '/queries/transactions'
+            },
+            {
+              title: 'Group Request',
+              icon: 'circle-medium',
+              to: '/qr/grequest'
+            },
+            {
+              title: 'Bulk Transactions',
+              icon: 'circle-medium',
+              to: '/queries/bulktransactions'
+            },
+            {
+              title: 'Loan Transactions',
+              icon: 'circle-medium',
+              to: '/queries/loans'
+            },
+            {
+              title: 'Group Settings',
+              icon: 'circle-medium',
+              to: '/qr/grsettings'
+            },
+            {
+              title: 'Group Statment',
+              icon: 'circle-medium',
+              to: '/qr/bgrstatment'
+            },
+            {
+              title: 'Group Loan Statment',
+              icon: 'circle-medium',
+              to: '/qr/grloanstatment'
+            }
+          ]
         },
         {
           title: 'Reports',
           icon: 'file-chart',
-          to: '/transactions'
+          subs: true,
+          submenus: [
+            {
+              title: 'Group',
+              icon: 'circle-medium',
+              to: '/reports/groups'
+            },
+            {
+              title: 'Transactions',
+              icon: 'circle-medium',
+              to: '/reports/transactions'
+            },
+            {
+              title: 'Revenue',
+              icon: 'circle-medium',
+            },
+            {
+              title: 'Summary',
+              icon: 'circle-medium',
+              to: '/reports/summary'
+            },
+            {
+              title: 'Trainers Tracker',
+              icon: 'circle-medium',
+              to: '/reports/ttracker'
+            },
+            {
+              title: 'Trainers Summary Report',
+              icon: 'circle-medium',
+              to: '/reports/tsummary'
+            },
+            {
+              title: 'Staff Report',
+              icon: 'circle-medium',
+              to: '/reports/staff'
+            },
+            {
+              title: 'Group with Trainer',
+              icon: 'circle-medium',
+              to: '/reports/grtrainers'
+            },
+            {
+              title: 'Group Weekly report',
+              icon: 'circle-medium',
+              to: '/reports/grweekly'
+            },
+            {
+              title: 'Mkoba Perfomance Summry Report',
+              icon: 'circle-medium',
+              to: '/reports/mkoba'
+            }
+          ]
+        },
+        {
+          title: 'Security',
+          icon: 'shield-lock',
+          subs: true,
+          submenus: [
+            {
+              title: 'Users Management',
+              icon: 'circle-medium',
+              to: '/security/users'
+            },
+            {
+              title: 'Groups Management',
+              icon: 'circle-medium',
+              to: '/security/groups'
+            },
+            {
+              title: 'Audit Trial',
+              icon: 'circle-medium',
+              to: '/security/audittrial'
+            },
+            {
+              title: 'Change Your Password',
+              icon: 'circle-medium',
+              to: '/security/password'
+            },
+            {
+              title: 'Admin Password Change',
+              icon: 'circle-medium',
+              to: '/security/adminpassword'
+            },
+            {
+              title: 'Security Policies',
+              icon: 'circle-medium',
+              to: '/policies'
+            },
+            {
+              title: 'Trainers Management',
+              icon: 'circle-medium',
+              to: '/management/trainers'
+            }
+          ]
+        },
+        {
+          title: 'Settings',
+          icon: 'cog',
+          subs: true,
+          submenus: [
+            {
+              title: 'User Functions',
+              icon: 'circle-medium',
+              to: '/settings/functions'
+            },
+            {
+              title: 'User Roles',
+              icon: 'circle-medium',
+              to: '/settings/roles'
+            },
+            {
+              title: 'Access Control',
+              icon: 'circle-medium',
+              to: '/settings/systemroles'
+            }
+          ]
+        },
+        {
+          title: 'Analytics',
+          icon: 'google-analytics',
+          subs: true,
+          submenus: [
+            {
+              title: 'Loan repayments',
+              icon: 'circle-medium',
+              to: '/analytics/loan'
+            },
+            {
+              title: 'Social Loan repayments',
+              icon: 'circle-medium',
+              to: '/analytics/socialloan'
+            },
+            {
+              title: 'Loan Transactions',
+              icon: 'circle-medium',
+              to: '/analytics/loantransactions'
+            },
+            {
+              title: 'Failed Transactions',
+              icon: 'circle-medium',
+              to: '/analytics/failedtransactions'
+            },
+            {
+              title: 'Group Shares',
+              icon: 'circle-medium',
+              to: '/analytics/groupshares'
+            },
+            {
+              title: 'Failed Group Creations',
+              icon: 'circle-medium',
+              to: '/analytics/retries'
+            },
+            {
+              title: 'Notifications',
+              icon: 'circle-medium',
+              to: '/analytics/notifications'
+            },
+            {
+              title: 'Portal Token',
+              icon: 'circle-medium',
+              to: '/analytics/tokens'
+            }
+          ]
         }
       ],
       menuitems: [

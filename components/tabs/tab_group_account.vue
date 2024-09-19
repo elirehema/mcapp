@@ -8,7 +8,7 @@
     </v-col>
     <v-col cols="8">
       <v-card class="mx-auto" max-width="90%">
-        <v-simple-table>
+        <v-simple-table dense>
           <template #default>
             <tbody>
               <tr>
@@ -46,55 +46,55 @@
               <tr>
                 <td class="font-weight-bold">Balance</td>
                 <td class="button--text text--darken-3">
-                  {{ account.balance }}
+                  {{ account.balance | currency}}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Deposits</td>
                 <td class="button--text text--darken-3">
-                  {{ account.deposits }}
+                  {{ account.deposits | currency}}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Withdraws</td>
                 <td class="button--text text--darken-3">
-                  {{ account.withdraws }}
+                  {{ account.withdraws | currency}}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Penalties</td>
                 <td class="button--text text--darken-3">
-                  {{ account.penalty }}
+                  {{ account.penalty | currency}}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Penalty Paid</td>
                 <td class="button--text text--darken-3">
-                  {{ account.penaltyPaid }}
+                  {{ account.penaltyPaid | currency }}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Social Funds</td>
                 <td class="button--text text--darken-3">
-                  {{ account.socialfund }}
+                  {{ account.socialfund | currency}}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Social Funds Withdraws</td>
                 <td class="button--text text--darken-3">
-                  {{ account.socialfundWithdraws }}
+                  {{ account.socialfundWithdraws | currency }}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Bonus</td>
                 <td class="button--text text--darken-3">
-                  {{ account.bonus }}
+                  {{ account.bonus | currency}}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Dividends</td>
                 <td class="button--text text--darken-3">
-                  {{ account.dividend }}
+                  {{ account.dividend |currency}}
                 </td>
               </tr>
 

@@ -9,6 +9,9 @@
           :headers="headers"
           :items="settings"
           item-key="name"
+          dense
+          :items-per-page="20"
+           :hide-default-footer="true"
           class="elevation-1"
          
         >

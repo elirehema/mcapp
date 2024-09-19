@@ -137,7 +137,7 @@ button:not([class^="v-btn v-btn--outlined"]) span.v-btn__content {
 }
 
 thead {
-  background-color: #4c4c4c;
+  background-color: #155a47;
 }
 thead tr th span {
   color: white;
@@ -155,6 +155,9 @@ table tbody tr td {
 th, td {
   text-align: left;
   padding: 0px;
+}
+th i.v-icon, td i.v-icon {
+  color: transparent !important;
 }
 
 tr:nth-child(even) {
