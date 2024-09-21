@@ -25,11 +25,12 @@ export default (ctx) => {
           accent: '#000000',
           secondary: '#f49123',
           success: '#f49123',
-          info: '#2196F3',
+          info: '#fecf12',
           warning: '#FB8C00',
           error: '#FF0000',
           green: '#509450',
-          button: '#14a6db'
+          button: '#14a6db',
+          blue: '#2596be'
         }
 
       }

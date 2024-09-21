@@ -53,7 +53,7 @@
           </v-dialog>
           <v-dialog v-model="permissiondialog" max-width="650px">
             <v-card>
-              <v-toolbar color="table" flat dark>
+              <v-toolbar color="primary" flat dark>
                 <v-toolbar-title class="text-h4 white--text"
                   ><span class="text-h5">Add Permissions</span></v-toolbar-title
                 >
@@ -79,7 +79,7 @@
                         small-chips
                       >
                         <template #selection="{ item }">
-                          <v-chip label outlined class="text--primary text-darken-2" close-icon="mdi-trash-can" close @click:close="removepermission(item)" >{{
+                          <v-chip small color="primary" label outlined class="text--primary text-darken-2" close-icon="mdi-trash-can" close @click:close="removepermission(item)" >{{
                             item.name
                           }}</v-chip>
                         </template>
@@ -91,8 +91,9 @@
   
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close"> Cancel </v-btn>
-                <v-btn color="blue darken-1" text @click="addpermission">
+                <v-btn color="info darken-2" small @click="close"> Cancel </v-btn>
+                <v-btn color="primary" small @click="addpermission">
+                  <v-icon left>mdi-content-save-check</v-icon>
                   Save
                 </v-btn>
               </v-card-actions>
@@ -211,7 +212,7 @@
         });
       },
       async addPermissions(item) {
-        await this.$axios
+        await this.$api
           .$get(`/roles/${item.id}`)
           .then((response) => {
             console.log(response);
