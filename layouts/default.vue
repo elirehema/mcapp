@@ -421,7 +421,12 @@ export default {
               title: 'Access Control',
               icon: 'circle-medium',
               to: '/settings/systemroles'
-            }
+            },
+            {
+              title: 'Permissions',
+              icon: 'circle-medium',
+              to: '/settings/permissions'
+            },
           ]
         },
         {

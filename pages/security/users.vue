@@ -1,9 +1,10 @@
 <template>
+   <div v-if="$rules.hasPermission('user.read')">
   <v-data-table
     v-if="users"
     :headers="headers"
     :items="users"
-    item-key="id"
+    item-key="id" dense
     class="elevation-1"
     :loading="loading"
     loading-text="Loading... Please wait"
@@ -66,35 +67,31 @@
       <span>{{ item.firstName }} {{ item.lastName }}</span>
     </template>
     <template #[`item.status`]="{ item }">
-      <v-icon v-if="item.status == 1" color="blue">
+      <v-icon small v-if="item.status == 1" color="blue">
         mdi-checkbox-marked-circle
       </v-icon>
-      <v-icon v-else color="red"> mdi-close-circle </v-icon>
+      <v-icon small v-else color="red"> mdi-close-circle </v-icon>
     </template>
-    <template #[`item.actions`]="{ item }">
+    <template #[`item.actions`]="{ item }" v-if="$rules.hasPermission('user.update')">
       <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        
-      <v-btn color="primary" dark icon @click="activateOrDiactivateUser(item)" v-bind="attrs"
-      v-on="on">
-        <v-icon v-if="item.status === 0" color="button">mdi-toggle-switch-off</v-icon>
-        <v-icon v-else color="red">mdi-toggle-switch</v-icon>
-      </v-btn>
-    </template>
-      <span> {{ item.status === 0 ? "Activate":"De-Activate" }} user account {{ item.firstName }} {{ item.lastName }}</span>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="primary" dark icon @click="activateOrDiactivateUser(item)" v-bind="attrs" v-on="on">
+            <v-icon v-if="item.status === 0" color="button">mdi-toggle-switch-off</v-icon>
+            <v-icon v-else color="red">mdi-toggle-switch</v-icon>
+          </v-btn>
+        </template>
+        <span> {{ item.status === 0 ? "Activate":"De-Activate" }} user account {{ item.firstName }} {{ item.lastName }}</span>
       </v-tooltip>
       <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        
-      <v-btn
-        v-if="item.status === 1 && !item.changePassword"
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn v-if="item.status === 1 && !item.changePassword"
         color="primary"
         dark
-        icon
+        icon small
         @click="select(item)"
         v-bind="attrs"
         v-on="on">
-        <v-icon color="warning">mdi-shield-sync</v-icon>
+        <v-icon small color="warning">mdi-shield-sync</v-icon>
       </v-btn>
       </template>
       <span>Reset this {{ item.firstName }} {{ item.lastName }} to default password</span>
@@ -102,6 +99,8 @@
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
+</div>
+<access-denied v-else/>
 </template>
 <script>
 export default {

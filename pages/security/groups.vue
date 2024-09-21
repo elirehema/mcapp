@@ -23,7 +23,7 @@
           </v-toolbar>
         </template>
         <template #[`item.action`]="{ item }">
-          <v-btn outlined small color="indigo">
+          <v-btn elevation="0" small color="button" class="text-capitalize">
             <v-icon left>mdi-eye</v-icon>
             View users</v-btn>
         </template>
