@@ -1,6 +1,7 @@
 <template>
+  <div v-if="$rules.hasPermission('role.read')">
     <v-data-table
-      v-if="roles && $rules.hasPermission('role.read')"
+      v-if="roles "
       :headers="headers"
       :items="roles"
       sort-by="calories"
@@ -150,6 +151,8 @@
       </template>
     </v-data-table>
     <skeleton-table-loader v-else />
+  </div>
+  <access-denied v-else/>
   </template>
   <script>
   import { mapGetters } from "vuex";

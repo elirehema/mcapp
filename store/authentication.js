@@ -3,8 +3,9 @@ const state = () => ({
   msisdn: null,
   account: null,
   password: null,
-  authenticated: false
-
+  authenticated: false,
+  userpermissions: [],
+  isAdmin: false,
 })
 
 const mutations = {
@@ -23,6 +24,8 @@ const mutations = {
     state.showLoader = false
     if (payload.accessToken) {
       state.account = payload
+      state.userpermissions = payload.permissions;
+      state.isAdmin = payload.role.id === 1;
       window.localStorage.setItem('accessToken', payload.accessToken)
       window.localStorage.setItem('userId', payload.id)
       if (payload.changePassword) {
@@ -105,6 +108,12 @@ const getters = {
   password: function (state) { return state.password },
   isAuthenticated: function (state) {
     return state.password !== null
+  },
+  userpermissions:function (state) {
+    return state.userpermissions
+  },
+  isAdmin:function (state) {
+    return state.isAdmin
   }
 
 }

@@ -156,7 +156,7 @@ th, td {
   text-align: left;
   padding: 0px;
 }
-th i.v-icon, td i.v-icon {
+th i.v-icon.v-data-table-header__icon, td i.v-icon.v-data-table-header__icon {
   color: transparent !important;
 }
 
