@@ -72,22 +72,33 @@
       <v-icon v-else color="red"> mdi-close-circle </v-icon>
     </template>
     <template #[`item.actions`]="{ item }">
-     
-      <v-btn color="primary" dark icon @click="activateOrDiactivateUser(item)">
-        <v-icon v-if="item.status === 0" color="button"
-          >mdi-toggle-switch-off</v-icon
-        >
+      <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        
+      <v-btn color="primary" dark icon @click="activateOrDiactivateUser(item)" v-bind="attrs"
+      v-on="on">
+        <v-icon v-if="item.status === 0" color="button">mdi-toggle-switch-off</v-icon>
         <v-icon v-else color="red">mdi-toggle-switch</v-icon>
       </v-btn>
+    </template>
+      <span> {{ item.status === 0 ? "Activate":"De-Activate" }} user account {{ item.firstName }} {{ item.lastName }}</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        
       <v-btn
         v-if="item.status === 1 && !item.changePassword"
         color="primary"
         dark
         icon
         @click="select(item)"
-      >
+        v-bind="attrs"
+        v-on="on">
         <v-icon color="warning">mdi-shield-sync</v-icon>
       </v-btn>
+      </template>
+      <span>Reset this {{ item.firstName }} {{ item.lastName }} to default password</span>
+      </v-tooltip>
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
@@ -160,8 +171,11 @@ export default {
     },
     async activateOrDiactivateUser(it) {
       this.loading = true;
+      console.log("*************************")
+      console.log("STATUS: "+it.status )
+      console.log(" IS ACTIVE: "+(parseInt(it.status) === 0))
       await this.$api
-        .$put(`/users/${it.id}/${it.status == 0 ? "activate" : "deactivate"}`)
+        .$put(`/users/${it.id}/${it.status === 0 ? "activate" : "deactivate"}`)
         .then((_response) => {
           setTimeout(() => {
             this.paginate({ page: 0, itemsPerPage: this.itemsPerPage });

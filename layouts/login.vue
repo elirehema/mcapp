@@ -1,7 +1,7 @@
 <template>
-  <v-app class="app login">
-    <v-main class="transparent">
-      <nuxt />
+  <v-app class="app login" >
+    <v-main class="transparent d-flex justify-center align-center">
+      <nuxt  />
     </v-main>
   </v-app>
 </template>

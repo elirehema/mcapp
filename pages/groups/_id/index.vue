@@ -15,7 +15,7 @@
         </v-icon>
       </v-app-bar-nav-icon>
 
-      <v-toolbar-title class=" font-weight-bold text-h4">
+      <v-toolbar-title class=" font-weight-bold text-h5">
         GROUP: {{ group.name }}
       </v-toolbar-title>
 
@@ -39,9 +39,9 @@
       </template>
     </v-app-bar>
     <v-tabs-items v-model="tab">
-      <v-tab-item>
+     <!-- <v-tab-item>
         <tab-group-services />
-      </v-tab-item>
+      </v-tab-item>-->
       <v-tab-item>
         <tab-group-account />
       </v-tab-item>
@@ -82,7 +82,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Services', 'Account', 'Members', 'Transactions','Settings']
+      items: [ 'Account', 'Members', 'Transactions','Settings']
     }
   },
   head () {

@@ -15,7 +15,7 @@
           class="elevation-1"
          
         >
-          <template #top>
+          <!--<template #top>
             <v-toolbar
               color="primary"
               flat
@@ -26,7 +26,7 @@
               </v-toolbar-title>
               <v-spacer />
             </v-toolbar>
-          </template>
+          </template>-->
           
           <template #no-data>
             <span>No organization found ...</span>

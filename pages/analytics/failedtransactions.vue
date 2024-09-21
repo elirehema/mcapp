@@ -47,8 +47,8 @@
           <span>{{ item.transactionDate | simpledateformat }}</span>
         </template>
         <template #item.action="{ item }">
-          <v-btn outlined small color="button">
-            <v-icon left>mdi-sync</v-icon>
+          <v-btn small color="button" class="text-capitalize">
+            <v-icon color="white" left>mdi-sync</v-icon>
             Submit for Retry</v-btn>
         </template>
       </v-data-table>
@@ -67,13 +67,13 @@ export default {
       loading: false,
 
       headers: [
+        { text: "Amount", value: "amount" },
         { text: "Source ", value: "sourceAccount" },
         { text: "Destination", value: "destinationAccount" },
-        { text: "Receipt ", value: "receipt" },
-        { text: "Date", value: "transactionDate" },
-        { text: "Amount", value: "amount" },
         { text: "Type ", value: "transactionType.type" },
         { text: "Group Name", value: "group.name" },
+        { text: "Receipt ", value: "receipt" },
+        { text: "Date", value: "transactionDate" },
         { text: "Action", value: "action" },
       ],
       show: false,

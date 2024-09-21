@@ -48,12 +48,16 @@
       <span>{{ item.name.split(" ")[0] + " "+ item.familyName.split(" ")[0] }}</span>
     </template>
     <template #item.status="{ item }">
-      <v-chip dark :color="item.status == 'ACTIVE' ? 'green':'success'">
-        <v-avatar v-if="item.status == 'ACTIVE'" left>
-          <v-icon>mdi-checkbox-marked-circle</v-icon>
-        </v-avatar>
-        {{ item.status.toLowerCase() }}
-      </v-chip>
+      <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <div  v-bind="attrs" v-on="on">
+          <v-icon v-if="item.status == 'ACTIVE'" color="green">mdi-check-circle-outline</v-icon>
+          <v-icon v-else color="grey" >mdi-account-off</v-icon>
+        </div>
+          
+          </template>
+          <span>Status: {{ item.status }}</span>
+          </v-tooltip>
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />

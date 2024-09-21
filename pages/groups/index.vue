@@ -31,7 +31,7 @@
             <v-text-field
             v-model="search"
               prepend-inner-icon="mdi-magnify"
-              label="Search group by name, id"
+              label="Search group by name, id,msisdn"
               single-line
               hide-details
               outlined
@@ -54,18 +54,22 @@
         <template #item.created="{item}">
           <span>{{ item.createdDate | dateformat }}</span>
         </template>
-        <template #item.id="{item}">
+        <!--<template #item.id="{item}">
           <v-chip small color="green lighten-2" class="white--text">
             {{ item.id }}
           </v-chip>
-        </template>
+        </template>-->
         <template #item.status="{ item }">
-          <v-chip medium dark :color="item.status == 'ACTIVE' ? 'green':'success'">
-            <v-avatar v-if="item.status == 'ACTIVE'" left>
-              <v-icon small>mdi-checkbox-marked-circle</v-icon>
-            </v-avatar>
-            {{ item.status }}
-          </v-chip>
+          <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <div  v-bind="attrs" v-on="on">
+          <v-icon v-if="item.status == 'ACTIVE'" color="green">mdi-check-circle</v-icon>
+          <v-icon v-else color="grey" >mdi-account-off</v-icon>
+        </div>
+          
+          </template>
+          <span>Status: {{ item.status }}</span>
+          </v-tooltip>
         </template>
         <template #no-data>
           <span>No organization found ...</span>
@@ -86,10 +90,9 @@ export default {
       loading: false,
       headers: [
         { text: 'Group Name', value: 'name' },
-        
-        { text: 'Group ID', value: 'id' },
         { text: 'Group Type ', value: 'type.type' },
-        { text: 'Location', value: 'location' },
+        { text: 'Msisdn', value: 'msisdn' },
+       // { text: 'Location', value: 'location' },
         { text: 'Members', value: 'members' },
         { text: 'Status ', value: 'status' },
         { text: 'Created Date', value: 'created' }

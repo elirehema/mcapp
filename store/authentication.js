@@ -23,7 +23,6 @@ const mutations = {
     state.showLoader = false
     if (payload.accessToken) {
       state.account = payload
-      console.log(payload)
       window.localStorage.setItem('accessToken', payload.accessToken)
       window.localStorage.setItem('userId', payload.id)
       if (payload.changePassword) {

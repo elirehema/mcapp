@@ -8,7 +8,7 @@
     class="elevation-1"
     @click:row="rowclick"
   >
-    <template #top>
+   <!--<template #top>
       <v-toolbar
         flat
         dense
@@ -20,7 +20,7 @@
         </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
-    </template>
+    </template>-->
     <template #item.message="{ item }">
       <v-tooltip left color="primary" class="pa-3" min-width="50%" max-width="80%">
         <template #activator="{ on, attrs }">
@@ -76,14 +76,14 @@ export default {
     headers: [
 
       { text: 'Name', value: 'name' },
-      { text: 'MSISDN ', value: 'msisdn' },
+      { text: 'MSISDN ', value: 'id' },
       { text: 'Role', value: 'role' },
       { text: 'Status ', value: 'status' },
       { text: 'Deposits ', value: 'deposits' },
       { text: 'Repayment', value: 'repayment' },
       { text: 'Penalty Paid', value: 'penaltyPaid' },
       { text: 'Withdraws', value: 'withdraws' },
-      { text: 'Dividends ', value: 'dividend' },
+      //{ text: 'Dividends ', value: 'dividend' },
       { text: 'Date', value: 'created' },
       { text: '', value: 'actions' }
     ]

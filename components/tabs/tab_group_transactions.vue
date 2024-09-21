@@ -12,14 +12,14 @@
         @click:row="rowclick"
         @pagination="paginate"
       >
-        <template #top>
+       <!-- <template #top>
           <v-toolbar color="primary" flat dark>
             <v-toolbar-title class="d-flex font-weight-bold">
               Group Transactions
             </v-toolbar-title>
             <v-spacer />
           </v-toolbar>
-        </template>
+        </template>-->
         <template #item.type="{ item }">
           <span v-if="item.transactionType"
             >{{ item.transactionType.type }}-({{

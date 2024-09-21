@@ -63,8 +63,9 @@
         
   
         headers: [
-          { text: "Session ID ", value: "sessionid" },
+          //{ text: "Session ID ", value: "sessionid" },
           { text: "First Name", value: "firstName" },
+          { text: 'Msisdn', value: 'msisdn' },
           { text: "Request", value: "request" },
           { text: "Receipt ", value: "receipt" },
           { text: "Date", value: "date" },

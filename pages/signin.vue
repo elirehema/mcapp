@@ -1,6 +1,5 @@
 <template>
-  <v-form class="form-box" @submit.prevent="formSubmit">
-    <v-container height="100%">
+    <v-container >
       <v-row v-if="false" class="mt-0">
         <v-col cols="12" sm="12" md="2">
           <img
@@ -12,11 +11,11 @@
         </v-col>
       </v-row>
 
-      <div class="d-flex align-center justify-center mt-15">
+      <div class="d-flex align-center justify-center">
         <v-row class="mt-0" no-gutters>
-          <v-col cols="12" md="5" class="  d-flex justify-center align-center ">
+          <v-col cols="12" md="5" class="d-flex justify-center align-center ">
             <v-list color="transparent">
-              <v-list-item three-line>
+              <v-list-item  three-line>
                 <v-list-item-content>
                   <v-list-item-title class="text-sm-h4 text-md-h3 text-lg-h2 primary--text text-xs-center font-weight-black text-md-left">
                     MKOBA DASHBOARD
@@ -30,12 +29,13 @@
           </v-col>
           <v-spacer />
           <v-col cols="12" md="5" lg="4" class="mt-5 d-flex justify-center">
-            <v-card class="py-12">
+            <v-form class="form-box" @submit.prevent="formSubmit">
+            <v-card class="py-12" rounded >
               <v-card-title class="d-flex justify-center">
                 <img
-                  src="@/assets/images/logo.png"
+                  src="@/assets/images/tcb_logo.png"
                   alt="homepage"
-                  width="150px"
+                  width="180px"
                   class="ml-2 dark-logo"
                 >
               </v-card-title>
@@ -66,7 +66,7 @@
                     />
                   </v-col>
                   <v-col cols="12" class=" mt-5 d-flex justify-center">
-                    <v-btn block type="submit" color="button" dark>
+                    <v-btn block type="submit" color="primary" dark>
                       Continue
                       <v-icon right>
                         mdi-arrow-right-bold
@@ -77,11 +77,11 @@
                 </v-row>
               </v-card-text>
             </v-card>
+            </v-form>
           </v-col>
         </v-row>
       </div>
     </v-container>
-  </v-form>
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
