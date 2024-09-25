@@ -30,31 +30,7 @@
       
 
       <v-divider />
-      <v-list  v-if="false" nav>
-        <v-list-item
-          v-for="child in menus"
-          :key="child.title"
-          :to="child.to"
-          link dense
-          color="success"
-          :class="mini ? 'ml-0':'pl-4'"
-        >
-          <!--<v-list-item-icon>
-            <v-icon color="white">
-              {{ 'mdi-'+ child.icon }}
-            </v-icon>
-          </v-list-item-icon>-->
-          <v-list-item-content>
-            <v-list-item-title class="font-weight-medium">
-              <v-icon left color="white">
-              {{ 'mdi-'+ child.icon }}
-            </v-icon>
-              {{ child.title }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-
+    
       <v-list  :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
         <template v-for="item in menus">
           <template v-if="item.subs">
@@ -83,6 +59,7 @@
             color="success" dense
             class="pl-5 mr-2"
             active-class="white--text"
+             v-if="$rules.hasPermission(sub.p)"
           >
             <v-list-item-content>
               <v-list-item-title class="font-weight-normal">
@@ -93,11 +70,13 @@
           </v-list-item>
         </v-list-group>
         </template>
-          <v-list-item v-else
+          <template v-else>
+          <v-list-item 
           :key="item.title"
           :to="item.to"
           link dense
           color="success"
+          v-if="$rules.hasPermission(item.p)"
           :class="mini ? 'ml-0':'pl-4'"
         >
           <v-list-item-content>
@@ -108,49 +87,12 @@
               {{ item.title }}
             </v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+          </v-list-item>
+          </template>
        
         
         </template>
         
-      </v-list>
-
-      <v-list v-if="false"  :class=" mini ? 'mt-0 pt-0 ml-0': 'mt-0 pt-0 ml-2'" dark>
-        <v-list-group
-          v-for="item in menuitems"
-          :key="item.title"
-          v-model="item.active"
-          active-class="white--text"
-          append-icon="mdi-chevron-down"
-          no-action
-          color="white"
-        >
-          <template #activator>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-medium ">
-                <v-icon left>{{ `mdi-${item.icon}` }}</v-icon>
-                {{ item.title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="child in item.menus"
-            :key="child.to"
-            :to="child.to"
-            link
-            color="success" dense
-            class="pl-5 mr-2"
-            active-class="white--text"
-          >
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-normal">
-                <v-icon left>{{ "mdi-" + child.icon }}</v-icon>
-                {{ child.title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
       </v-list>
       <template #append>
         <div class="py-2 mx-3">
@@ -230,18 +172,21 @@ export default {
           title: 'Home',
           icon: 'home-outline',
           subs: false,
+          p: 'all',
           to: '/'
         },
         {
           title: 'Groups',
           icon: 'account-group-outline',
           subs: false,
+          p: 'group.read',
           to: '/groups'
         },
         {
           title: 'Members',
           icon: 'account-group-outline',
           subs: false,
+          p: 'member.read',
           to: '/members'
         },
         /** 
@@ -260,47 +205,56 @@ export default {
             {
               title: 'Subscribers',
               icon: 'circle-medium',
-              to: '/queries/subscribers'
+              to: '/queries/subscribers',
+              p :'all'
             },
             {
               title: 'Groups',
               icon: 'circle-medium',
-              to: '/queries/groups'
+              to: '/queries/groups',
+              p: 'group.read'
             },
             {
               title: 'Transactions',
               icon: 'circle-medium',
-              to: '/queries/transactions'
+              to: '/queries/transactions',
+              p: 'query.membertrxn'
             },
             {
               title: 'Group Request',
               icon: 'circle-medium',
-              to: '/qr/grequest'
+              to: '/qr/grequest',
+              p: 'all'
             },
             {
               title: 'Bulk Transactions',
               icon: 'circle-medium',
-              to: '/queries/bulktransactions'
+              to: '/queries/bulktransactions',
+              p:'all'
             },
             {
               title: 'Loan Transactions',
               icon: 'circle-medium',
-              to: '/queries/loans'
+              to: '/queries/loans',
+              p: 'query.loantrxn'
             },
             {
               title: 'Group Settings',
               icon: 'circle-medium',
-              to: '/qr/grsettings'
+              to: '/qr/grsettings',
+              p: 'hiden'
             },
             {
               title: 'Group Statment',
               icon: 'circle-medium',
-              to: '/qr/bgrstatment'
+              to: '/qr/bgrstatment',
+              p: 'hiden'
             },
             {
               title: 'Group Loan Statment',
               icon: 'circle-medium',
-              to: '/qr/grloanstatment'
+              to: '/qr/grloanstatment',
+              p: 'hiden'
             }
           ]
         },
@@ -312,51 +266,61 @@ export default {
             {
               title: 'Group',
               icon: 'circle-medium',
-              to: '/reports/groups'
+              to: '/reports/groups',
+              p: 'all'
             },
             {
               title: 'Transactions',
               icon: 'circle-medium',
-              to: '/reports/transactions'
+              to: '/reports/transactions',
+              p: 'all'
             },
             {
               title: 'Revenue',
               icon: 'circle-medium',
+              p: 'all'
             },
             {
               title: 'Summary',
               icon: 'circle-medium',
-              to: '/reports/summary'
+              to: '/reports/summary',
+              p: 'all'
             },
             {
               title: 'Trainers Tracker',
               icon: 'circle-medium',
-              to: '/reports/ttracker'
+              to: '/reports/ttracker',
+              p: 'all'
             },
             {
               title: 'Trainers Summary Report',
               icon: 'circle-medium',
-              to: '/reports/tsummary'
+              to: '/reports/tsummary',
+              p: 'all'
             },
             {
               title: 'Staff Report',
               icon: 'circle-medium',
-              to: '/reports/staff'
+              to: '/reports/staff',
+              p: 'all'
             },
             {
               title: 'Group with Trainer',
               icon: 'circle-medium',
-              to: '/reports/grtrainers'
+              to: '/reports/grtrainers',
+              p: 'all'
             },
             {
               title: 'Group Weekly report',
               icon: 'circle-medium',
-              to: '/reports/grweekly'
+              to: '/reports/grweekly',
+              p: 'all'
             },
             {
               title: 'Mkoba Perfomance Summry Report',
               icon: 'circle-medium',
-              to: '/reports/mkoba'
+              to: '/reports/mkoba',
+              p: 'all'
             }
           ]
         },
@@ -368,37 +332,44 @@ export default {
             {
               title: 'Users Management',
               icon: 'circle-medium',
-              to: '/security/users'
+              to: '/security/users',
+              p: 'user.read'
             },
             {
               title: 'Groups Management',
               icon: 'circle-medium',
-              to: '/security/groups'
+              to: '/security/groups',
+              p: 'all'
             },
             {
               title: 'Audit Trial',
               icon: 'circle-medium',
-              to: '/security/audittrial'
+              to: '/security/audittrial',
+              p: 'auditlog.read'
             },
             {
               title: 'Change Your Password',
               icon: 'circle-medium',
-              to: '/security/password'
+              to: '/security/password',
+              p: 'user.pwdchange'
             },
             {
               title: 'Admin Password Change',
               icon: 'circle-medium',
-              to: '/security/adminpassword'
+              to: '/security/adminpassword',
+              p: 'user.pwdchange'
             },
             {
               title: 'Security Policies',
               icon: 'circle-medium',
-              to: '/policies'
+              to: '/policies',
+              p: 'all'
             },
             {
               title: 'Trainers Management',
               icon: 'circle-medium',
-              to: '/management/trainers'
+              to: '/management/trainers',
+              p: 'all'
             }
           ]
         },
@@ -410,22 +381,26 @@ export default {
             {
               title: 'User Functions',
               icon: 'circle-medium',
-              to: '/settings/functions'
+              to: '/settings/functions',
+              p: 'all'
             },
             {
               title: 'User Roles',
               icon: 'circle-medium',
-              to: '/settings/roles'
+              to: '/settings/roles',
+              p: 'role.read'
             },
             {
               title: 'Access Control',
               icon: 'circle-medium',
-              to: '/settings/systemroles'
+              to: '/settings/systemroles',
+              p: 'role.read'
             },
             {
               title: 'Permissions',
               icon: 'circle-medium',
-              to: '/settings/permissions'
+              to: '/settings/permissions',
+              p: 'permission.read'
             },
           ]
         },
@@ -437,262 +412,55 @@ export default {
             {
               title: 'Loan repayments',
               icon: 'circle-medium',
-              to: '/analytics/loan'
+              to: '/analytics/loan',
+              p: 'all'
             },
             {
               title: 'Social Loan repayments',
               icon: 'circle-medium',
-              to: '/analytics/socialloan'
+              to: '/analytics/socialloan',
+              p: 'all'
             },
             {
               title: 'Loan Transactions',
               icon: 'circle-medium',
-              to: '/analytics/loantransactions'
+              to: '/analytics/loantransactions',
+              p: 'all'
             },
             {
               title: 'Failed Transactions',
               icon: 'circle-medium',
-              to: '/analytics/failedtransactions'
+              to: '/analytics/failedtransactions',
+              p: 'all'
             },
             {
               title: 'Group Shares',
               icon: 'circle-medium',
-              to: '/analytics/groupshares'
+              to: '/analytics/groupshares',
+              p: 'all'
             },
             {
               title: 'Failed Group Creations',
               icon: 'circle-medium',
-              to: '/analytics/retries'
+              to: '/analytics/retries',
+              p: 'all'
             },
             {
               title: 'Notifications',
               icon: 'circle-medium',
-              to: '/analytics/notifications'
+              to: '/analytics/notifications',
+              p: 'all'
             },
             {
               title: 'Portal Token',
               icon: 'circle-medium',
-              to: '/analytics/tokens'
+              to: '/analytics/tokens',
+              p: 'all'
             }
           ]
         }
       ],
-      menuitems: [
-        {
-          title: 'Queries',
-          icon: 'database-search',
-          menus: [
-            {
-              title: 'Subscribers',
-              icon: 'circle-medium',
-              to: '/queries/subscribers'
-            },
-            {
-              title: 'Group',
-              icon: 'circle-medium',
-              to: '/queries/groups'
-            },
-            {
-              title: 'Transactions',
-              icon: 'circle-medium',
-              to: '/queries/transactions'
-            },
-            {
-              title: 'Group Request',
-              icon: 'circle-medium',
-              to: '/qr/grequest'
-            },
-            {
-              title: 'Bulk Transactions',
-              icon: 'circle-medium',
-              to: '/queries/bulktransactions'
-            },
-            {
-              title: 'Loan Transactions',
-              icon: 'circle-medium',
-              to: '/queries/loans'
-            },
-            {
-              title: 'Group Settings',
-              icon: 'circle-medium',
-              to: '/qr/grsettings'
-            },
-            {
-              title: 'Group Statment',
-              icon: 'circle-medium',
-              to: '/qr/bgrstatment'
-            },
-            {
-              title: 'Group Loan Statment',
-              icon: 'circle-medium',
-              to: '/qr/grloanstatment'
-            }
-          ]
-        },
-        {
-          title: 'Reports',
-          icon: 'file-chart',
-          menus: [
-            {
-              title: 'Group',
-              icon: 'circle-medium',
-              to: '/reports/groups'
-            },
-            {
-              title: 'Transactions',
-              icon: 'circle-medium',
-              to: '/reports/transactions'
-            },
-            {
-              title: 'Revenue',
-              icon: 'circle-medium',
-            },
-            {
-              title: 'Summary',
-              icon: 'circle-medium',
-              to: '/reports/summary'
-            },
-            {
-              title: 'Trainers Tracker',
-              icon: 'circle-medium',
-              to: '/reports/ttracker'
-            },
-            {
-              title: 'Trainers Summary Report',
-              icon: 'circle-medium',
-              to: '/reports/tsummary'
-            },
-            {
-              title: 'Staff Report',
-              icon: 'circle-medium',
-              to: '/reports/staff'
-            },
-            {
-              title: 'Group with Trainer',
-              icon: 'circle-medium',
-              to: '/reports/grtrainers'
-            },
-            {
-              title: 'Group Weekly report',
-              icon: 'circle-medium',
-              to: '/reports/grweekly'
-            },
-            {
-              title: 'Mkoba Perfomance Summry Report',
-              icon: 'circle-medium',
-              to: '/reports/mkoba'
-            }
-          ]
-        },
-        {
-          title: 'Security',
-          icon: 'shield-lock',
-          menus: [
-            {
-              title: 'Users Management',
-              icon: 'circle-medium',
-              to: '/security/users'
-            },
-            {
-              title: 'Groups Management',
-              icon: 'circle-medium',
-              to: '/security/groups'
-            },
-            {
-              title: 'Audit Trial',
-              icon: 'circle-medium',
-              to: '/security/audittrial'
-            },
-            {
-              title: 'Change Your Password',
-              icon: 'circle-medium',
-              to: '/security/password'
-            },
-            {
-              title: 'Admin Password Change',
-              icon: 'circle-medium',
-              to: '/security/adminpassword'
-            },
-            {
-              title: 'Security Policies',
-              icon: 'circle-medium',
-              to: '/policies'
-            },
-            {
-              title: 'Trainers Management',
-              icon: 'circle-medium',
-              to: '/management/trainers'
-            }
-          ]
-        },
-        {
-          title: 'Settings',
-          icon: 'cog',
-          menus: [
-            {
-              title: 'User Functions',
-              icon: 'circle-medium',
-              to: '/settings/functions'
-            },
-            {
-              title: 'User Roles',
-              icon: 'circle-medium',
-              to: '/settings/roles'
-            },
-            {
-              title: 'Access Control',
-              icon: 'circle-medium',
-              to: '/settings/systemroles'
-            }
-          ]
-        },
-        {
-          title: 'Analytics',
-          icon: 'google-analytics',
-          menus: [
-            {
-              title: 'Loan repayments',
-              icon: 'circle-medium',
-              to: '/analytics/loan'
-            },
-            {
-              title: 'Social Loan repayments',
-              icon: 'circle-medium',
-              to: '/analytics/socialloan'
-            },
-            {
-              title: 'Loan Transactions',
-              icon: 'circle-medium',
-              to: '/analytics/loantransactions'
-            },
-            {
-              title: 'Failed Transactions',
-              icon: 'circle-medium',
-              to: '/analytics/failedtransactions'
-            },
-            {
-              title: 'Group Shares',
-              icon: 'circle-medium',
-              to: '/analytics/groupshares'
-            },
-            {
-              title: 'Failed Group Creations',
-              icon: 'circle-medium',
-              to: '/analytics/retries'
-            },
-            {
-              title: 'Notifications',
-              icon: 'circle-medium',
-              to: '/analytics/notifications'
-            },
-            {
-              title: 'Portal Token',
-              icon: 'circle-medium',
-              to: '/analytics/tokens'
-            }
-          ]
-        }
-      ],
+     
       miniVariant: false,
       right: true,
       rightDrawer: false,

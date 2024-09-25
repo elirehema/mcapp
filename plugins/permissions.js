@@ -4,7 +4,9 @@ export default ({ app, store }, inject) => {
         if(store.getters.isAdmin){
           return true
         } else if (s) {
-          s = s.concat(",all")
+          if(s=='all'){
+            return true;
+          }
           var p = s.split(",");
           if (store.getters.userpermissions) {
             const found = p.some((r) => store.getters.userpermissions.includes(r));

@@ -1,4 +1,5 @@
 <template>
+  <div v-if="$rules.hasPermission('member.read')">
   <v-data-table
     v-if="members"
     :headers="headers"
@@ -61,6 +62,8 @@
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
+</div>
+  <access-denied v-else/>
 </template>
 <script>
 export default {

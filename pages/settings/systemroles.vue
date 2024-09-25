@@ -13,7 +13,7 @@
             >PORTAL SYSTEM USERS ROLES</v-toolbar-title
           >
           <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="650px">
+          <v-dialog v-if="$rules.hasPermission('role.add')" v-model="dialog" max-width="650px">
             <template
               v-if="$rules.hasPermission('roles.create')"
               v-slot:activator="{ on, attrs }"
@@ -68,7 +68,7 @@
                     <v-col cols="12" sm="12">
                       <v-select
                         multiple
-                        chips
+                        chips :readonly="!$rules.hasPermission('roles.grantpm')"
                         v-model="perms"
                         :items="permissions"
                         :item-text="'name'"
@@ -80,7 +80,7 @@
                         small-chips
                       >
                         <template #selection="{ item }">
-                          <v-chip small color="primary" label outlined class="text--primary text-darken-2" close-icon="mdi-trash-can" close @click:close="removepermission(item)" >{{
+                          <v-chip small color="button"  label outlined class="text--button text-darken-2" close-icon="mdi-trash-can" close @click:close="removepermission(item)" >{{
                             item.name
                           }}</v-chip>
                         </template>
@@ -93,7 +93,7 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="info darken-2" small @click="close"> Cancel </v-btn>
-                <v-btn color="primary" small @click="addpermission">
+                <v-btn color="button" small @click="addpermission">
                   <v-icon left>mdi-content-save-check</v-icon>
                   Save
                 </v-btn>
@@ -110,12 +110,10 @@
         <span>{{ item.createdAt | dateformat }}</span>
       </template>
       <template
-        v-slot:item.actions="{ item }"
-        v-if="$rules.hasPermission('role.update')"
-      >
+        v-slot:item.actions="{ item }" v-if="$rules.hasPermission('role.update')">
         <v-icon class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-btn
-        v-if="$rules.hasPermission('role.addpermission')"
+        v-if="$rules.hasPermission('role.grantpm')"
           color="blue"
           dark
           class="text-capitalize"
@@ -218,7 +216,6 @@
         await this.$api
           .$get(`/roles/${item.id}`)
           .then((response) => {
-            console.log(response);
             this.perms = response.ids;
             this.editedItem.permissions = response.ids;
             this.permissiondialog = true;
