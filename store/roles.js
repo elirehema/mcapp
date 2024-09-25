@@ -41,7 +41,7 @@ const state = () => ({
         })
     },
     async _activaterole ({ dispatch }, payload) {
-        await this.$api.$put(`/roles/activate`, payload)
+        await this.$api.$put(`/roles`, payload)
           .then((response) => {
             dispatch("_fetchroles", null, { root: true });
           }).catch((err) => {

@@ -73,7 +73,7 @@
       <v-icon small v-else color="red"> mdi-close-circle </v-icon>
     </template>
     <template #[`item.actions`]="{ item }" v-if="$rules.hasPermission('user.update')">
-      <v-tooltip bottom>
+      <v-tooltip  v-if="$rules.hasPermission('user.activate')" bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn color="primary" dark icon @click="activateOrDiactivateUser(item)" v-bind="attrs" v-on="on">
             <v-icon v-if="item.status === 0" color="button">mdi-toggle-switch-off</v-icon>
@@ -82,7 +82,7 @@
         </template>
         <span> {{ item.status === 0 ? "Activate":"De-Activate" }} user account {{ item.firstName }} {{ item.lastName }}</span>
       </v-tooltip>
-      <v-tooltip bottom>
+      <v-tooltip  v-if="$rules.hasPermission('user.pwdreset')" bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-if="item.status === 1 && !item.changePassword"
         color="primary"

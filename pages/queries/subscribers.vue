@@ -1,4 +1,5 @@
 <template>
+   <div v-if="$rules.hasPermission('member.groups')">
   <v-data-table
     v-if="accounts"
     :headers="headers"
@@ -56,6 +57,8 @@
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
+</div>
+<access-denied v-else/>
 </template>
 <script>
 export default {

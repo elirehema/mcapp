@@ -25,7 +25,7 @@ const mutations = {
     if (payload.accessToken) {
       state.account = payload
       state.userpermissions = payload.permissions;
-      state.isAdmin = payload.role.id === 1;
+      state.isAdmin = payload.admin;
       window.localStorage.setItem('accessToken', payload.accessToken)
       window.localStorage.setItem('userId', payload.id)
       if (payload.changePassword) {
