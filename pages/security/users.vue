@@ -61,7 +61,26 @@
       </v-dialog>
     </template>
     <template #[`item.created`]="{ item }">
-      <span>{{ item.createdAt | dateformat }}</span>
+      <v-menu offset-y>
+      <template v-slot:activator="{ attrs, on }">
+        <v-btn x-small color="grey"
+          class="blue--text ma-0 text-capitalize"
+          v-bind="attrs" elevation="0"
+          v-on="on">
+          Change Role
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item @click="changeUserRole(item.id,role.id)"
+          v-for="role in roles"
+          :key="role.id" dense
+          link
+        >
+          <v-list-item-title>{{ role.name }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
     </template>
     <template #[`item.name`]="{ item }">
       <span>{{ item.firstName }} {{ item.lastName }}</span>
@@ -71,6 +90,12 @@
         mdi-checkbox-marked-circle
       </v-icon>
       <v-icon small v-else color="red"> mdi-close-circle </v-icon>
+    </template>
+    <template #[`item.role`]="{ item }">
+      <v-chip outlined x-small v-if="item.role !== undefined" color="button darken-2" dark>
+        {{ item.role.name }}
+      </v-chip>
+      <span small v-else class="grey--text"> Not assigned </span>
     </template>
     <template #[`item.actions`]="{ item }" v-if="$rules.hasPermission('user.update')">
       <v-tooltip  v-if="$rules.hasPermission('user.activate')" bottom>
@@ -103,6 +128,7 @@
 <access-denied v-else/>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -117,7 +143,8 @@ export default {
         { text: "Email Address ", value: "email" },
         { text: "Phone No. ", value: "phone" },
         { text: "Status ", value: "status" },
-        { text: "Created At", value: "created" },
+        { text: "Role", value: "role" },
+        { text: "", value: "created" },
         { text: "Actions", value: "actions" },
       ],
     };
@@ -129,7 +156,13 @@ export default {
   },
   created() {
     this.paginate({ page: 0, itemsPerPage: this.itemsPerPage });
+    this.$store.dispatch("_fetchroles");
   },
+  computed: {
+      ...mapGetters({
+        roles: "roles"
+      }),
+    },
   methods: {
     select(it) {
       this.dialog = !this.dialog;
@@ -139,7 +172,7 @@ export default {
       this.loading = true;
       await this.$api
         .$get("/users/search", {
-          params: { page: 0, size: 15, sort: "username asc", search: value },
+          params: { page: 0, size: 15, sort: "first_name asc", search: value },
         })
         .then((response) => {
           this.loading = false;
@@ -156,7 +189,7 @@ export default {
           params: {
             page: it.page,
             size: it.itemsPerPage,
-            sort: "username asc",
+            sort: "first_name asc",
           },
         })
         .then((response) => {
@@ -186,6 +219,17 @@ export default {
       this.loading = true;
       await this.$api
         .$put(`/users/${this.selected.id}/password`)
+        .then((_response) => {
+          setTimeout(() => {
+            this.paginate({ page: 0, itemsPerPage: this.itemsPerPage });
+          }, 5000);
+        })
+        .catch((_err) => {});
+    },
+    async changeUserRole(userId, roleId) {
+      this.loading = true;
+      await this.$api
+        .$post(`/users/role`,{roleId: roleId, userId: userId})
         .then((_response) => {
           setTimeout(() => {
             this.paginate({ page: 0, itemsPerPage: this.itemsPerPage });
