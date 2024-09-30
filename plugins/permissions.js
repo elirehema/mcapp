@@ -2,10 +2,13 @@ export default ({ app, store }, inject) => {
     inject("rules", {
       hasPermission(s) {
         if(store.getters.isAdmin){
-          return true
+          return true && s !== 'hidden'
         } else if (s) {
           if(s=='all'){
             return true;
+          }
+          if(s=='hidden'){
+            return false;
           }
           var p = s.split(",");
           if (store.getters.userpermissions) {

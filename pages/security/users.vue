@@ -109,14 +109,14 @@
       </v-tooltip>
       <v-tooltip  v-if="$rules.hasPermission('user.pwdreset')" bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-if="item.status === 1 && !item.changePassword"
+          <v-btn v-if="item.status === 1"
         color="primary"
         dark
         icon small
         @click="select(item)"
         v-bind="attrs"
         v-on="on">
-        <v-icon small color="warning">mdi-shield-sync</v-icon>
+        <v-icon small color="button darken-2">mdi-shield-sync</v-icon>
       </v-btn>
       </template>
       <span>Reset this {{ item.firstName }} {{ item.lastName }} to default password</span>

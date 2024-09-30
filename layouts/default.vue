@@ -206,7 +206,7 @@ export default {
               title: 'Subscribers',
               icon: 'circle-medium',
               to: '/queries/subscribers',
-              p :'all'
+              p :'member.read'
             },
             {
               title: 'Groups',
@@ -230,7 +230,7 @@ export default {
               title: 'Bulk Transactions',
               icon: 'circle-medium',
               to: '/queries/bulktransactions',
-              p:'all'
+              p:'queries.bulktrxn'
             },
             {
               title: 'Loan Transactions',
@@ -242,19 +242,19 @@ export default {
               title: 'Group Settings',
               icon: 'circle-medium',
               to: '/qr/grsettings',
-              p: 'hiden'
+              p: 'hidden'
             },
             {
               title: 'Group Statment',
               icon: 'circle-medium',
               to: '/qr/bgrstatment',
-              p: 'hiden'
+              p: 'hidden'
             },
             {
               title: 'Group Loan Statment',
               icon: 'circle-medium',
               to: '/qr/grloanstatment',
-              p: 'hiden'
+              p: 'hidden'
             }
           ]
         },
@@ -273,7 +273,7 @@ export default {
               title: 'Transactions',
               icon: 'circle-medium',
               to: '/reports/transactions',
-              p: 'all'
+              p: 'report.grouptrxn'
             },
             {
               title: 'Revenue',
@@ -284,43 +284,43 @@ export default {
               title: 'Summary',
               icon: 'circle-medium',
               to: '/reports/summary',
-              p: 'all'
+              p: 'report.general'
             },
             {
               title: 'Trainers Tracker',
               icon: 'circle-medium',
               to: '/reports/ttracker',
-              p: 'all'
+              p: 'report.general'
             },
             {
               title: 'Trainers Summary Report',
               icon: 'circle-medium',
               to: '/reports/tsummary',
-              p: 'all'
+              p: 'report.general'
             },
             {
               title: 'Staff Report',
               icon: 'circle-medium',
               to: '/reports/staff',
-              p: 'all'
+              p: 'report.general'
             },
             {
               title: 'Group with Trainer',
               icon: 'circle-medium',
               to: '/reports/grtrainers',
-              p: 'all'
+              p: 'report.general'
             },
             {
               title: 'Group Weekly report',
               icon: 'circle-medium',
               to: '/reports/grweekly',
-              p: 'all'
+              p: 'report.general'
             },
             {
               title: 'Mkoba Perfomance Summry Report',
               icon: 'circle-medium',
               to: '/reports/mkoba',
-              p: 'all'
+              p: 'report.general'
             }
           ]
         },
@@ -348,28 +348,30 @@ export default {
               p: 'auditlog.read'
             },
             {
-              title: 'Change Your Password',
+              title: 'Change Password',
               icon: 'circle-medium',
               to: '/security/password',
               p: 'all'
             },
+            /**
             {
               title: 'Admin Password Change',
               icon: 'circle-medium',
               to: '/security/adminpassword',
               p: 'user.pwdchange'
             },
+            **/
             {
               title: 'Security Policies',
               icon: 'circle-medium',
               to: '/policies',
-              p: 'all'
+              p: 'hidden'
             },
             {
               title: 'Trainers Management',
               icon: 'circle-medium',
               to: '/management/trainers',
-              p: 'all'
+              p: 'all.all'
             }
           ]
         },
