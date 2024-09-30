@@ -67,7 +67,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer />
-      <v-btn color="button darken-2">
+      <v-btn color="button darken-2" @click="changeOwnPassword()">
         <v-icon small left>mdi-shield-refresh</v-icon>CHange pAssword</v-btn
       >
     </v-card-actions>
@@ -84,5 +84,15 @@ export default {
     },
     search: null,
   }),
+  methods:{
+    async changeOwnPassword(){
+      await this.$api
+        .$put("/users/password", {password: this.editedItem.newPassword, oldPassword: this.editedItem.currentPassword})
+        .then((response) => {
+          this.$store.dispatch('_logoutsession')
+        })
+        .catch((_err) => {});
+    },
+    }
 };
 </script>

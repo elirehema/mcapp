@@ -351,7 +351,7 @@ export default {
               title: 'Change Your Password',
               icon: 'circle-medium',
               to: '/security/password',
-              p: 'user.pwdchange'
+              p: 'all'
             },
             {
               title: 'Admin Password Change',
