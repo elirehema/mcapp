@@ -1,5 +1,5 @@
 const type = 'website'
-const url = 'https://www.ngazi.co.tz/'
+const url = 'https://www.tcbbank.co.tz'
 const title = 'M-Koba'
 const description = 'A new digital form of saving that provides security of the groups’ money, transparency and simplicity for members to contribute from anywhere through Vodacom M-Pesa.'
 const mainImage = 'https://pbs.twimg.com/media/D0f-6dDXcAAKmih.png'
