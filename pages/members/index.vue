@@ -16,7 +16,7 @@
   >
     <template #top>
       <v-toolbar dark color="primary" flat>
-        <v-toolbar-title class=" font-weight-black text-h4">
+        <v-toolbar-title class=" font-weight-black text-h5">
           Group Members
         </v-toolbar-title>
         <v-spacer />

@@ -69,7 +69,7 @@ export default {
       msisdn: '',
       headers: [
         { text: 'No ', value: 'index' },
-        { text: 'MSISDN', value: 'msisdn' },
+        { text: 'MSISDN', value: 'group.msisdn' },
         { text: 'Group Name ', value: 'group.name' },
         { text: 'Member Role ', value: 'role' },
         { text: 'Member Deposits ', value: 'deposits' },

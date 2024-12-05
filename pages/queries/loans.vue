@@ -17,7 +17,7 @@
           <template #top>
             <v-toolbar color="primary" flat dark>
               <v-toolbar-title class="text-h5 font-weight-black">
-                MEMBER LOAN TRANSACTIONS
+                Member loan transactions
               </v-toolbar-title>
               <v-spacer />
               <v-row no-gutters class="d-flex justify-end">
@@ -34,13 +34,14 @@
                     clearable
                     autocomplete="off"
                     light
+                    @click:clear="clearsearch()"
                     background-color="white"
                     v-model="editedItem.msisdn"
                   />
                 </v-col>
                 
-                <v-col cols="12" sm="12" md="2" class="ml-2">
-                  <v-btn color="button" :disabled="!editedItem.msisdn" @click.stop="paginate({ page: 0, itemsPerPage: 15 })">
+                <v-col cols="12" sm="12" md="2" class="ml-2 mr-8">
+                  <v-btn color="button" :disabled="!editedItem.msisdn" @click.stop="paginate(defaultPage)">
                     <v-icon left>mdi-filter-variant</v-icon>
                     Query Result</v-btn>
                 </v-col>
@@ -70,6 +71,7 @@
         rules: {
           required: (v) => !!v || "Field is required",
         },
+        defaultPage: { page: 1, itemsPerPage: 15 },
         headers: [
         { text: 'Loan ID', value: 'id' },
         
@@ -97,11 +99,15 @@
   },
    
     methods: {
+      clearsearch(){
+        this.editedItem.msisdn = null;
+        this.paginate(this.defaultPage)
+      },
       async paginate(it) {
+        console.log(it)
         this.loading = true;
-      
         await this.$api
-          .$post("/queries/memberloantrxn", this.editedItem,{ params: { page: it.page, size: it.itemsPerPage, sort: 'transaction_date desc' } } )
+          .$post("/queries/memberloantrxn", this.editedItem,{ params: { page: it.page, size: it.itemsPerPage, sort: 'transaction_id desc' } } )
           .then((response) => {
             this.loading = false;
             this.pages = response.totalRows

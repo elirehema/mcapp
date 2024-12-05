@@ -16,7 +16,7 @@
         <template #top>
           <v-toolbar color="primary" flat dark>
             <v-toolbar-title class="text-h5 font-weight-black">
-              Transaction Query: Member TRANSACTIONS DETAILS
+            Member Transactions Details
             </v-toolbar-title>
             <v-spacer />
             <v-row no-gutters  class="d-flex justify-end">

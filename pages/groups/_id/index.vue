@@ -52,6 +52,9 @@
         <tab-group-transactions />
       </v-tab-item>
       <v-tab-item>
+        <tab-group-requests/>
+      </v-tab-item>
+      <v-tab-item>
         <tab-group-settings />
       </v-tab-item>
     </v-tabs-items>
@@ -65,13 +68,15 @@ import TabGroupAccount from '@/components/tabs/tab_group_account.vue'
 import TabGroupTransactions from '@/components/tabs/tab_group_transactions.vue'
 import TabGroupServices from '@/components/tabs/tab_group_services.vue'
 import TabGroupSettings from '@/components/tabs/tab_group_settings.vue'
+import TabGroupRequests from '@/components/tabs/tab_group_requests.vue'
 export default {
   components: {
     'tab-group-members': TabGroupMembers,
     'tab-group-transactions': TabGroupTransactions,
     'tab-group-account': TabGroupAccount,
     'tab-group-services': TabGroupServices,
-    'tab-group-settings': TabGroupSettings
+    'tab-group-settings': TabGroupSettings,
+    'tab-group-requests': TabGroupRequests
   },
   data () {
     return {
@@ -82,7 +87,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: [ 'Account', 'Members', 'Transactions','Settings']
+      items: [ 'Account', 'Members', 'Transactions','Requests','Settings']
     }
   },
   head () {
