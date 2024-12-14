@@ -35,6 +35,9 @@ export default {
       autoLineWidth: false
     }
   },
+  created(){
+    this.$store.dispatch('_fetchpermissions');
+  },
   head () {
     return {
       title: 'Home'
