@@ -1,4 +1,5 @@
 <template>
+  <div v-if="$rules.hasPermission('member.approvals')">
   <v-row v-if="datas" class="d-flex justify-space-between" no-gutters>
     <v-col cols="12">
       <v-data-table
@@ -64,8 +65,9 @@
       </v-data-table>
     </v-col>
   </v-row>
-
   <skeleton-table-loader v-else />
+</div>
+  <access-denied v-else/>
 </template>
 <script>
 export default {

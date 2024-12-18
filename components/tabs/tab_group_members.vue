@@ -1,4 +1,5 @@
 <template>
+    <div v-if="$rules.hasPermission('member.read')">
   <v-data-table
     v-if="members"
     :headers="headers"
@@ -63,6 +64,8 @@
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
+</div>
+  <access-denied v-else/>
 </template>
 <script>
 export default {
@@ -76,7 +79,7 @@ export default {
     headers: [
 
       { text: 'Name', value: 'name' },
-      { text: 'MSISDN ', value: 'id' },
+      { text: 'Msisdn ', value: 'msisdn' },
       { text: 'Role', value: 'role' },
       { text: 'Status ', value: 'status' },
       { text: 'Deposits ', value: 'deposits' },
@@ -91,7 +94,7 @@ export default {
   methods:{
     rowclick (v) {
       this.show = true
-      this.$router.push(`/groups/${this.$route.params.id}/${v.id}`)
+      this.$router.push(`/groups/${this.$route.params.id}/${v.msisdn}`)
       // console.log(v)
     }
   }

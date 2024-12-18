@@ -1,4 +1,5 @@
 <template>
+  <div v-if="$rules.hasPermission('group.settings')">
     <v-row
       v-if="settings"
       class="d-flex justify-space-between"
@@ -35,9 +36,10 @@
         </v-data-table>
       </v-col>
     </v-row>
-  
     <skeleton-table-loader v-else />
-  </template>
+  </div>
+  <access-denied v-else/>
+</template>
   <script>
   export default {
     data () {
