@@ -202,12 +202,14 @@ export default {
           icon: 'database-search',
           subs: true,
           submenus: [
+            /**
             {
               title: 'Subscribers',
               icon: 'circle-medium',
               to: '/queries/subscribers',
               p :'member.read'
             },
+            **/
             {
               title: 'Groups',
               icon: 'circle-medium',
@@ -220,12 +222,14 @@ export default {
               to: '/queries/transactions',
               p: 'query.membertrxn'
             },
+            /**
             {
               title: 'Group Request',
               icon: 'circle-medium',
               to: '/qr/grequest',
               p: 'all'
             },
+            **/
             {
               title: 'Bulk Transactions',
               icon: 'circle-medium',
@@ -267,7 +271,7 @@ export default {
               title: 'Group',
               icon: 'circle-medium',
               to: '/reports/groups',
-              p: 'all'
+              p: 'report.grouptrxn'
             },
             {
               title: 'Transactions',
@@ -336,10 +340,10 @@ export default {
               p: 'user.read'
             },
             {
-              title: 'Groups Management',
+              title: 'Security Groups',
               icon: 'circle-medium',
               to: '/security/groups',
-              p: 'all'
+              p: 'system.roles'
             },
             {
               title: 'Audit Trial',
@@ -384,7 +388,7 @@ export default {
               title: 'User Functions',
               icon: 'circle-medium',
               to: '/settings/functions',
-              p: 'all'
+              p: 'system.function'
             },
             {
               title: 'User Roles',

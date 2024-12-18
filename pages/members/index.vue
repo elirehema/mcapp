@@ -76,7 +76,7 @@ export default {
       
       headers: [
         { text: 'Name ', value: 'name' },
-        { text: 'MSISDN ', value: 'id' },
+        { text: 'Msisdn ', value: 'msisdn' },
         { text: 'Group', value: 'group.name' },
         { text: 'Role', value: 'role' },
         { text: 'Status ', value: 'status' },
@@ -102,8 +102,7 @@ export default {
   methods: {
     rowclick (v) {
       this.show = true
-      this.$router.push(`/members/${v.id}`)
-      // console.log(v)
+      this.$router.push(`/groups/${v.group.id}/${v.msisdn}`)
     },
     handlePagination(it){
       if (this.search === null){

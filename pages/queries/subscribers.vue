@@ -1,7 +1,6 @@
 <template>
    <div v-if="$rules.hasPermission('member.groups')">
   <v-data-table
-    v-if="accounts"
     :headers="headers"
     :items="accounts"
     item-key="name"
@@ -56,7 +55,6 @@
       {{ item.familyName == '-1'?'': item.familyName }}
     </template>
   </v-data-table>
-  <skeleton-table-loader v-else />
 </div>
 <access-denied v-else/>
 </template>
@@ -87,7 +85,7 @@ export default {
     }
   },
   created () {
-    this.paginate()
+    //this.paginate()
   },
   methods: {
     async paginate () {
